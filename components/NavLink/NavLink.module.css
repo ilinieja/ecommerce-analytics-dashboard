@@ -1,0 +1,27 @@
+.link {
+    color: var(--color-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 10px 12px;
+    border-radius: 8px;
+}
+
+.link:hover:not(.activeLink) {
+    background-color: var(--color-light-grey);
+}
+
+.activeLink {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
