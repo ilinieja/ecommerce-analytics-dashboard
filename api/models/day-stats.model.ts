@@ -1,18 +1,20 @@
 import mongoose from "mongoose";
 import Order from "./order.model";
 
-const DAY_REVENUES_COLLECTION_NAME = "day_revenues";
+const DAY_STATS_COLLECTION_NAME = "day_stats";
 
-const DayRevenue = new mongoose.Schema(
+const DayStats = new mongoose.Schema(
   {
     _id: { type: String, required: true },
     date: { type: Date, required: true },
     revenue: { type: Number, required: true },
+    orders: { type: Number, required: true },
+    averageOrderRevenue: { type: Number, required: true },
   },
-  { collection: DAY_REVENUES_COLLECTION_NAME, versionKey: false }
+  { collection: DAY_STATS_COLLECTION_NAME, versionKey: false }
 );
 
-export async function calculateDayRevenues() {
+export async function calculateDayStats() {
   await Order.aggregate([
     { $unwind: { path: "$items" } },
     {
@@ -20,6 +22,10 @@ export async function calculateDayRevenues() {
         _id: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
         revenue: {
           $sum: { $multiply: ["$items.quantity", "$items.item.price"] },
+        },
+        orders: { $sum: 1 },
+        averageOrderRevenue: {
+          $avg: { $multiply: ["$items.quantity", "$items.item.price"] },
         },
       },
     },
@@ -30,10 +36,9 @@ export async function calculateDayRevenues() {
         },
       },
     },
-    { $merge: { into: DAY_REVENUES_COLLECTION_NAME, whenMatched: "replace" } },
+    { $merge: { into: DAY_STATS_COLLECTION_NAME, whenMatched: "replace" } },
   ]);
 }
 
 // This prevents Mongoose from recompiling the model.
-export default mongoose.models.DayRevenue ||
-  mongoose.model("DayRevenue", DayRevenue);
+export default mongoose.models.DayStats || mongoose.model("DayStats", DayStats);

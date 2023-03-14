@@ -1,28 +1,23 @@
 import DayStatsModel from "../models/day-stats.model";
 import { DbConnection } from "../utils/dbConnection";
 
-export interface TotalStats {
+export interface DayStats {
+  date: Date;
   revenue: number;
   orders: number;
   averageOrderRevenue: number;
 }
 
-export class TotalStatsService {
+export class DayStatsService {
   @DbConnection()
-  async getTotalStats(startDate: Date, endDate: Date) {
-    const totalStats = await DayStatsModel.aggregate<TotalStats>([
+  async getDayStats(startDate: Date, endDate: Date) {
+    const dayStats = await DayStatsModel.aggregate<DayStats>([
       { $match: { date: { $gte: startDate, $lt: endDate } } },
-      {
-        $group: {
-          _id: null,
-          revenue: { $sum: "$revenue" },
-          orders: { $sum: "$orders" },
-          averageOrderRevenue: { $avg: "$averageOrderRevenue" },
-        },
-      },
+      { $sort: { date: 1 } },
       {
         $project: {
           _id: false,
+          date: true,
           revenue: true,
           orders: true,
           averageOrderRevenue: true,
@@ -30,6 +25,6 @@ export class TotalStatsService {
       },
     ]).exec();
 
-    return totalStats[0];
+    return dayStats;
   }
 }
