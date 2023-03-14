@@ -1,31 +1,31 @@
 import mongoose from "mongoose";
-import Order, { GeoBucket } from "./order.model";
+import Order, { Platform } from "./order.model";
 
-const DAY_GEO_BUCKET_STATS_COLLECTION_NAME = "day_geo_bucket_stats";
+const DAY_PLATFORM_STATS_COLLECTION_NAME = "day_platform_stats";
 
-const DayGeoBucketStats = new mongoose.Schema(
+const DayPlatformStats = new mongoose.Schema(
   {
     _id: {
       date: { type: String, required: true },
-      geoBucket: { type: String, required: true, enum: GeoBucket },
+      platform: { type: String, required: true, enum: Platform },
     },
     date: { type: Date, required: true },
-    geoBucket: { type: String, required: true, enum: GeoBucket },
+    platform: { type: String, required: true, enum: Platform },
     revenue: { type: Number, required: true },
     orders: { type: Number, required: true },
     averageOrderRevenue: { type: Number, required: true },
   },
-  { collection: DAY_GEO_BUCKET_STATS_COLLECTION_NAME, versionKey: false }
+  { collection: DAY_PLATFORM_STATS_COLLECTION_NAME, versionKey: false }
 );
 
-export async function calculateDayGeoBucketStats() {
+export async function calculateDayPlatformStats() {
   await Order.aggregate([
     { $unwind: { path: "$items" } },
     {
       $group: {
         _id: {
           date: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
-          geoBucket: "$geoLocation.bucket",
+          platform: "$platform",
         },
         revenue: {
           $sum: { $multiply: ["$items.quantity", "$items.item.price"] },
@@ -44,12 +44,12 @@ export async function calculateDayGeoBucketStats() {
             format: "%Y-%m-%d",
           },
         },
-        geoBucket: "$_id.geoBucket",
+        platform: "$_id.platform",
       },
     },
     {
       $merge: {
-        into: DAY_GEO_BUCKET_STATS_COLLECTION_NAME,
+        into: DAY_PLATFORM_STATS_COLLECTION_NAME,
         whenMatched: "replace",
       },
     },
@@ -57,5 +57,5 @@ export async function calculateDayGeoBucketStats() {
 }
 
 // This prevents Mongoose from recompiling the model.
-export default mongoose.models.DayGeoBucketStats ||
-  mongoose.model("DayGeoBucketStats", DayGeoBucketStats);
+export default mongoose.models.DayPlatformStats ||
+  mongoose.model("DayPlatformStats", DayPlatformStats);
