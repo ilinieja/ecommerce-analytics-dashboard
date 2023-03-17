@@ -8,7 +8,7 @@ export interface DayStats extends TotalStats {
   date: Date;
 }
 
-export class DayStatsService {
+export class StatsService {
   @DbConnection()
   async getDayStats(startDate: Date, endDate: Date) {
     const dayStats = await DayStatsModel.aggregate<DayStats>([

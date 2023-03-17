@@ -11,7 +11,7 @@ export interface DayPlatformStats extends TotalPlatformStats {
   date: Date;
 }
 
-export class DayPlatformStatsService {
+export class PlatformStatsService {
   @DbConnection()
   async getDayStats(startDate: Date, endDate: Date, platform?: Platform) {
     const dayStats = await DayPlatformStatsModel.aggregate<DayPlatformStats>([
