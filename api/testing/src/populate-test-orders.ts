@@ -7,8 +7,8 @@ import Order, {
   GeoBucket,
   LeadSource,
 } from "../../models/order.model";
-import dbConnection from "../../utils/dbConnection";
-import logger from "../../utils/logger";
+import dbConnection from "../../shared/dbConnection";
+import logger from "../../shared/logger";
 
 async function populateTestData() {
   const connection = await dbConnection();

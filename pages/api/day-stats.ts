@@ -2,7 +2,7 @@ import { createHandler, Get, Query, ParseDatePipe } from "next-api-decorators";
 
 import { DayStats, DayStatsService } from "@/api/services/day-stats.service";
 
-export interface DaysStatsResponse {
+export interface DayStatsResponse {
   dayStats: DayStats[];
 }
 
@@ -13,7 +13,7 @@ class DayStatsHandler {
   async getDayStats(
     @Query("startDate", ParseDatePipe) startDate: Date,
     @Query("endDate", ParseDatePipe) endDate: Date
-  ): Promise<DaysStatsResponse> {
+  ): Promise<DayStatsResponse> {
     const dayStats = await this.dayStatsService.getDayStats(startDate, endDate);
 
     return { dayStats };

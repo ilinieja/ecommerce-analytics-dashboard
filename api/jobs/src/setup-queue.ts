@@ -1,6 +1,6 @@
 import { Agenda } from "@hokify/agenda";
 
-import logger from "../../utils/logger";
+import logger from "../../shared/logger";
 
 const DATABASE_URI = process.env.JOBS_DATABASE_URI;
 const DATABASE_COLLECTION = process.env.JOBS_DATABASE_COLLECTION;

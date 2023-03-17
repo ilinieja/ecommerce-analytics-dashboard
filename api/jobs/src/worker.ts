@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
-import logger from "../../utils/logger";
+import logger from "../../shared/logger";
 
 import setupQueue from "./setup-queue";
 import scheduleDbViewUpdates from "./db-view-updates";

@@ -1,6 +1,6 @@
 import { Agenda } from "@hokify/agenda";
 
-import dbConnection from "../../utils/dbConnection";
+import dbConnection from "../../shared/dbConnection";
 import { calculateDayStats } from "../../models/day-stats.model";
 import { calculateDayGeoBucketStats } from "../../models/day-geo-bucket-stats.model";
 import { calculateDayPlatformStats } from "../../models/day-platform-stats.model";

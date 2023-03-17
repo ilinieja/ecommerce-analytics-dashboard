@@ -1,11 +1,11 @@
 import DayStatsModel from "../models/day-stats.model";
-import { DbConnection } from "../utils/dbConnection";
+import { DbConnection } from "../shared/dbConnection";
+import { getStatsProjection, Stats } from "../shared/stats";
 
-export interface DayStats {
+export interface TotalStats extends Stats {}
+
+export interface DayStats extends TotalStats {
   date: Date;
-  revenue: number;
-  orders: number;
-  averageOrderRevenue: number;
 }
 
 export class DayStatsService {
@@ -16,15 +16,32 @@ export class DayStatsService {
       { $sort: { date: 1 } },
       {
         $project: {
-          _id: false,
+          ...getStatsProjection(),
           date: true,
-          revenue: true,
-          orders: true,
-          averageOrderRevenue: true,
         },
       },
     ]).exec();
 
     return dayStats;
+  }
+
+  @DbConnection()
+  async getTotalStats(startDate: Date, endDate: Date) {
+    const totalStats = await DayStatsModel.aggregate<TotalStats>([
+      { $match: { date: { $gte: startDate, $lt: endDate } } },
+      {
+        $group: {
+          _id: null,
+          revenue: { $sum: "$revenue" },
+          orders: { $sum: "$orders" },
+          averageOrderRevenue: { $avg: "$averageOrderRevenue" },
+        },
+      },
+      {
+        $project: getStatsProjection(),
+      },
+    ]).exec();
+
+    return totalStats[0];
   }
 }
