@@ -1,0 +1,16 @@
+.pageHeader {
+  display: flex;
+  padding: 30px;
+}
+
+.pageTitle {
+  margin: 0;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.pageContent {
+    display: flex;
+    flex-direction: column;
+    padding: 0 30px 60px;
+}

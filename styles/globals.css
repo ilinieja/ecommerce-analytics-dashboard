@@ -1,10 +1,14 @@
 :root {
-  --color-dark: #433C5D;
+  --color-dark: #343434;
   --color-light: #fff;
   --color-light-grey: #f7f7f7;
-  --color-grey: #92a4b0;
-
-  --color-primary: #615AA6;
+  --color-grey: #b9b9b9;
+  --color-dark-grey: #c9c9c9;
+  --color-violet: #665191;
+  --color-orange: #dd8057;
+  --color-blue: #4875c3;
+  --color-red: #c66669;
+  --color-green: #61ab94;
 }
 
 /* Apply border-box for all elements. */
