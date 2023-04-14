@@ -1,8 +1,11 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+
 import { totalStatsSlice } from "./totalStats/totalStats.slice";
+import { dayStatsSlice } from "./dayStats/dayStats.slice";
 
 const rootReducer = combineReducers({
   totalStats: totalStatsSlice.reducer,
+  dayStats: dayStatsSlice.reducer,
 });
 
 export const setupStore = () =>

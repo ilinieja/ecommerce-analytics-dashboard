@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { subYears } from "date-fns";
 
 import { fetchTotalStats } from "@/store/totalStats/totalStats.slice";
+import { fetchDayStats } from "@/store/dayStats/dayStats.slice";
 import { AppDispatch } from "@/store/store";
 import { totalStatsSelectors } from "@/store/totalStats/totalStats.selectors";
 import SvgDotsLoader from "@/icons/SvgDotsLoader";
@@ -28,6 +29,7 @@ export default function TotalStatsBar() {
       const startDate = subYears(endDate, 1);
 
       dispatch(fetchTotalStats({ startDate, endDate }));
+      dispatch(fetchDayStats({ startDate, endDate }));
     }
   }, [isLoadingIdle, dispatch]);
 

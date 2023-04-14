@@ -5,7 +5,7 @@ import { getStatsProjection, Stats } from "../shared/stats";
 export interface TotalStats extends Stats {}
 
 export interface DayStats extends TotalStats {
-  date: Date;
+  date: string;
 }
 
 export class StatsService {
