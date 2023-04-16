@@ -1,5 +1,8 @@
 import numeral from "numeral";
 
+import { TimelineDataItem } from "@/shared/timeline";
+
+import MiniTimelineChart from "../MiniLineChart/MiniTimelineChart";
 import styles from "./TotalStat.module.css";
 
 export interface TotalStatProps {
@@ -8,7 +11,7 @@ export interface TotalStatProps {
   valueFormat?: string;
   valuePrefix?: string;
   prevValue?: number;
-  timelineValues?: number[];
+  timelineData?: TimelineDataItem[];
 }
 
 export default function TotalStat({
@@ -16,6 +19,7 @@ export default function TotalStat({
   value,
   valueFormat = "0,0.[000]a",
   valuePrefix = "",
+  timelineData: timelineValues = [],
 }: TotalStatProps) {
   return (
     <div className={styles.row}>
@@ -29,6 +33,9 @@ export default function TotalStat({
           </div>
         </div>
       </div>
+      {timelineValues.length && (
+        <MiniTimelineChart data={timelineValues} className={styles.chart} />
+      )}
     </div>
   );
 }

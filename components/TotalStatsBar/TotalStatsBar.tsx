@@ -7,6 +7,7 @@ import { fetchDayStats } from "@/store/dayStats/dayStats.slice";
 import { AppDispatch } from "@/store/store";
 import { totalStatsSelectors } from "@/store/totalStats/totalStats.selectors";
 import SvgDotsLoader from "@/icons/SvgDotsLoader";
+import { dayStatsSelectors } from "@/store/dayStats/dayStats.selectors";
 
 import TotalStat from "../TotalStat/TotalStat";
 import styles from "./TotalStatsBar.module.css";
@@ -22,6 +23,14 @@ export default function TotalStatsBar() {
     totalStatsSelectors.getTotalAverageOrderRevenue
   );
 
+  const revenuesTimeline = useSelector(
+    dayStatsSelectors.getRevenuesTimeline(10)
+  );
+  const ordersTimeline = useSelector(dayStatsSelectors.getOrdersTimeline(10));
+  const averageOrderRevenuesTimeline = useSelector(
+    dayStatsSelectors.getAverageOrderRevenuesTimeline(10)
+  );
+
   useEffect(() => {
     if (isLoadingIdle) {
       // TODO: Use dates from control when it's implemented.
@@ -35,13 +44,19 @@ export default function TotalStatsBar() {
 
   return (
     <div className={styles.card}>
-      <TotalStat name="Revenue" value={revenue} valuePrefix="$" />
-      <TotalStat name="Orders" value={orders} />
+      <TotalStat
+        name="Revenue"
+        value={revenue}
+        valuePrefix="$"
+        timelineData={revenuesTimeline}
+      />
+      <TotalStat name="Orders" value={orders} timelineData={ordersTimeline} />
       <TotalStat
         name="Avg order value"
         value={averageOrderValue}
         valueFormat="0,0.[00]a"
         valuePrefix="$"
+        timelineData={averageOrderRevenuesTimeline}
       />
       {!isLoadingSuccess && (
         <div className={styles.loadingOverlay}>
