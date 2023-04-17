@@ -52,8 +52,8 @@ export default function MiniTimelineChart({
       .attr("y2", yScale(d3.max(data, (d) => d.value) as number))
       .selectAll("stop")
       .data([
-        { offset: "50%", color: "#F95D6A" },
-        { offset: "100%", color: "#2F4B7C" },
+        { offset: "60%", color: "#F95D6A" },
+        { offset: "100%", color: "#343434" },
       ])
       .enter()
       .append("stop")
