@@ -14,7 +14,7 @@
 }
 
 .bold {
-    margin: 0 0 4px;
+    margin: 0;
     font-weight: 700;
     font-size: 1.5rem;
     letter-spacing: .05rem;

@@ -12,7 +12,7 @@ const SvgDotsLoader = (props: SVGProps<SVGSVGElement>) => (
       cy={50}
       r={44}
       fill="none"
-      stroke="#343434"
+      stroke="currentColor"
       strokeWidth={8}
       style={{
         opacity: 0.5,
@@ -21,7 +21,7 @@ const SvgDotsLoader = (props: SVGProps<SVGSVGElement>) => (
     <path
       d="M 50 94 A 44 44 0 0 1 12 72"
       fill="none"
-      stroke="#343434"
+      stroke="currentColor"
       strokeWidth={8}
     >
       <animateTransform

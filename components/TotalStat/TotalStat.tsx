@@ -3,39 +3,40 @@ import numeral from "numeral";
 import { TimelineDataItem } from "@/shared/timeline";
 
 import MiniTimelineChart from "../MiniLineChart/MiniTimelineChart";
+import ValuesDiff from "../ValuesDiff/ValuesDiff";
+
 import styles from "./TotalStat.module.css";
 
 export interface TotalStatProps {
   name: string;
-  value: number;
+  totalValue: number;
   valueFormat?: string;
   valuePrefix?: string;
-  prevValue?: number;
   timelineData?: TimelineDataItem[];
 }
 
 export default function TotalStat({
   name,
-  value,
+  totalValue = 0,
   valueFormat = "0,0.[000]a",
   valuePrefix = "",
-  timelineData: timelineValues = [],
+  timelineData = [],
 }: TotalStatProps) {
   return (
     <div className={styles.row}>
       <div className={styles.column}>
         <h2 className={styles.title}>{name}</h2>
-        <div className={styles.row}>
-          <div className={styles.column}>
-            <h3 className={styles.bold}>
-              {numeral(value).format(`${valuePrefix}${valueFormat}`)}
-            </h3>
-          </div>
-        </div>
+        <h3 className={styles.bold}>
+          {numeral(totalValue).format(`${valuePrefix}${valueFormat}`)}
+        </h3>
+        {timelineData.length && (
+          <ValuesDiff
+            initialValue={timelineData[0].value}
+            finalValue={timelineData[timelineData.length - 1].value}
+          />
+        )}
       </div>
-      {timelineValues.length && (
-        <MiniTimelineChart data={timelineValues} className={styles.chart} />
-      )}
+      <MiniTimelineChart data={timelineData} className={styles.chart} />
     </div>
   );
 }

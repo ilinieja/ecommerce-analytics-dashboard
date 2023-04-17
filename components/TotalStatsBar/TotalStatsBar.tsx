@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { subYears } from "date-fns";
+import { subMonths } from "date-fns";
 
 import { fetchTotalStats } from "@/store/totalStats/totalStats.slice";
 import { fetchDayStats } from "@/store/dayStats/dayStats.slice";
@@ -34,8 +34,8 @@ export default function TotalStatsBar() {
   useEffect(() => {
     if (isLoadingIdle) {
       // TODO: Use dates from control when it's implemented.
-      const endDate = new Date();
-      const startDate = subYears(endDate, 1);
+      const endDate = subMonths(new Date(), 3);
+      const startDate = subMonths(endDate, 2);
 
       dispatch(fetchTotalStats({ startDate, endDate }));
       dispatch(fetchDayStats({ startDate, endDate }));
@@ -46,14 +46,18 @@ export default function TotalStatsBar() {
     <div className={styles.card}>
       <TotalStat
         name="Revenue"
-        value={revenue}
+        totalValue={revenue}
         valuePrefix="$"
         timelineData={revenuesTimeline}
       />
-      <TotalStat name="Orders" value={orders} timelineData={ordersTimeline} />
+      <TotalStat
+        name="Orders"
+        totalValue={orders}
+        timelineData={ordersTimeline}
+      />
       <TotalStat
         name="Avg order value"
-        value={averageOrderValue}
+        totalValue={averageOrderValue}
         valueFormat="0,0.[00]a"
         valuePrefix="$"
         timelineData={averageOrderRevenuesTimeline}

@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.indicator {
+    margin-right: 0.4rem;
+    height: 0.7rem;
+    width: auto;
+}
+
+.flipped {
+  transform: rotateX(180deg);   
+}
+
+.text {
+  font-size: 1rem;
+}
+
+.green {
+  color: var(--color-green);
+}
+
+.red {
+  color: var(--color-red);
+}

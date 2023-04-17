@@ -24,7 +24,7 @@ export default function MiniTimelineChart({
   } = useResizeObserver<HTMLDivElement>();
 
   useEffect(() => {
-    if (!containerWidth || !containerHeight) {
+    if (!containerWidth || !containerHeight || !data.length) {
       return;
     }
 
@@ -42,7 +42,7 @@ export default function MiniTimelineChart({
     svgEl.selectAll("*").remove();
     const svg = svgEl.append("g");
 
-    svg
+    svgEl
       .append("linearGradient")
       .attr("id", "line-gradient")
       .attr("gradientUnits", "userSpaceOnUse")
@@ -57,12 +57,8 @@ export default function MiniTimelineChart({
       ])
       .enter()
       .append("stop")
-      .attr("offset", function (d) {
-        return d.offset;
-      })
-      .attr("stop-color", function (d) {
-        return d.color;
-      });
+      .attr("offset", (d) => d.offset)
+      .attr("stop-color", (d) => d.color);
 
     const line = d3
       .line<TimelineDataItem>()
@@ -72,14 +68,14 @@ export default function MiniTimelineChart({
 
     svg
       .selectAll(".line")
-      .data(data)
+      .data([data])
       .enter()
       .append("path")
       .attr("fill", "none")
       .attr("stroke", "url(#line-gradient)")
       .attr("stroke-width", 2)
       .attr("d", line(data));
-  }, [containerWidth, containerHeight]);
+  }, [containerWidth, containerHeight, data]);
 
   return (
     <div className={classNames(styles.container, className)} ref={containerRef}>
