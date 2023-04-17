@@ -12,5 +12,6 @@
 .pageContent {
     display: flex;
     flex-direction: column;
+    gap: 20px;
     padding: 0 30px 60px;
 }

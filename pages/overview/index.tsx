@@ -1,6 +1,7 @@
 import TotalStatsBar from "@/components/TotalStatsBar/TotalStatsBar";
 
 import styles from "./index.module.css";
+import BreakdownStatsChart from "@/components/BreakdownStatsChart/BreakdownStatsChart";
 
 export default function Overview() {
   return (
@@ -10,6 +11,7 @@ export default function Overview() {
       </header>
       <section className={styles.pageContent}>
         <TotalStatsBar />
+        <BreakdownStatsChart />
       </section>
     </>
   );

@@ -40,7 +40,7 @@ export default function MiniTimelineChart({
 
     const svgEl = d3.select(svgRef.current);
     svgEl.selectAll("*").remove();
-    const svg = svgEl.append("g");
+    const chart = svgEl.append("g");
 
     svgEl
       .append("linearGradient")
@@ -66,7 +66,7 @@ export default function MiniTimelineChart({
       .y((d) => yScale(d.value))
       .curve(d3.curveBasis);
 
-    svg
+    chart
       .selectAll(".line")
       .data([data])
       .enter()
