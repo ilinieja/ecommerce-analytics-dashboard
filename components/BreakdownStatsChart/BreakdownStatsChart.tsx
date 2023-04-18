@@ -13,6 +13,7 @@ import StackedBarChart, {
   StackedBarChartDataItem,
   StackedBarStackItem,
 } from "../StackedBarChart/StackedBarChart";
+import ChartLegend from "../ChartLegend/ChartLegend";
 
 import styles from "./BreakdownStatsChart.module.css";
 
@@ -70,7 +71,12 @@ export default function BreakdownStatsChart({
 
   return (
     <div className={classNames(styles.container, className)}>
-      <div className={styles.row}></div>
+      <div className={styles.row}>
+        <ChartLegend
+          className={styles.rightAligned}
+          items={Object.values(stackConfig)}
+        />
+      </div>
       <StackedBarChart className={styles.chart} data={chartData} />
       {!isLoadingSuccess && (
         <div className={styles.loadingOverlay}>

@@ -171,7 +171,7 @@ export default function StackedBarChart({
           return path;
         });
     }
-  }, [containerHeight, containerWidth, data]);
+  }, [containerHeight, containerWidth, data, margin]);
 
   return (
     <div className={classNames(styles.container, className)} ref={containerRef}>
