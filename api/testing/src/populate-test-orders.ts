@@ -13,7 +13,7 @@ import logger from "../../shared/logger";
 async function populateTestData() {
   const connection = await dbConnection();
 
-  const orders = Array.from({ length: 1000 }, createRandomOrder);
+  const orders = Array.from({ length: 10000 }, createRandomOrder);
 
   try {
     await Order.collection.insertMany(orders);

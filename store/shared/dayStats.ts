@@ -1,5 +1,6 @@
 import {
   EntityState,
+  IdSelector,
   createAsyncThunk,
   createEntityAdapter,
   createSlice,
@@ -23,9 +24,10 @@ interface FetchDayStatsParams {
 
 export type DayStatsSliceState<T> = EntityState<T> & LoadingState;
 
-export interface GetDayStatsSliceParams {
+export interface GetDayStatsSliceParams<T> {
   name: string;
   apiPath: string;
+  selectId: IdSelector<T>;
 }
 
 export function getDayStatsStore<
@@ -34,7 +36,7 @@ export function getDayStatsStore<
     | DayStatsResponse
     | DayPlatformStatsResponse
     | DayGeoBucketStatsResponse
->({ name, apiPath }: GetDayStatsSliceParams) {
+>({ name, apiPath, selectId }: GetDayStatsSliceParams<T>) {
   const fetch = createAsyncThunk(
     `${name}/fetch`,
     async ({ startDate, endDate }: FetchDayStatsParams) => {
@@ -49,9 +51,7 @@ export function getDayStatsStore<
     }
   );
 
-  const adapter = createEntityAdapter<T>({
-    selectId: (dayStats) => dayStats.date,
-  });
+  const adapter = createEntityAdapter<T>({ selectId });
 
   const initialState: DayStatsSliceState<T> = {
     ...adapter.getInitialState(),

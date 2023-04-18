@@ -12,4 +12,5 @@ export const {
 } = getDayStatsStore<DayPlatformStats, DayPlatformStatsResponse>({
   name: dayPlatformStatsSliceName,
   apiPath: "api/platform-stats/day",
+  selectId: (entity) => `${entity.date}_${entity.platform}`,
 });

@@ -12,4 +12,5 @@ export const {
 } = getDayStatsStore<DayStats, DayStatsResponse>({
   name: dayStatsSliceName,
   apiPath: "api/stats/day",
+  selectId: (entity) => entity.date,
 });

@@ -2,16 +2,23 @@ import { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import useResizeObserver from "use-resize-observer";
 import classNames from "classnames";
+import numeral from "numeral";
 
 import styles from "./StackedBarChart.module.css";
 
 export interface StackedBarChartData {
-  groups: { [group: string]: { title: string } };
-  subgroups: { [subgroup: string]: { title: string; color: string } };
-  values: Array<{
-    group: string;
-    subgroups: { [subgroup: string]: number };
-  }>;
+  stackConfig: { [stack: string]: StackedBarStackItem };
+  values: { [group: string]: StackedBarChartDataItem };
+}
+
+export interface StackedBarStackItem {
+  title: string;
+  color: string;
+}
+
+export interface StackedBarChartDataItem {
+  title: string;
+  stack: Record<string, number>;
 }
 
 export interface StackedBarChartProps {
@@ -46,7 +53,7 @@ export default function StackedBarChart({
 
     const xScale = d3
       .scaleBand()
-      .domain(Object.keys(data.groups))
+      .domain(Object.keys(data.values))
       .range([0, containerWidth - margin.left - margin.right])
       .padding(0.3);
 
@@ -54,16 +61,16 @@ export default function StackedBarChart({
       .scaleLinear()
       .domain([
         0,
-        d3.max(data.values, (d) =>
-          d3.sum(Object.values(d.subgroups))
+        d3.max(Object.values(data.values), (d) =>
+          d3.sum(Object.values(d.stack))
         ) as number,
       ])
       .range([containerHeight - margin.top - margin.bottom, 0]);
 
-    const stackedData = d3.stack().keys(Object.keys(data.subgroups))(
-      data.values.map(({ group, subgroups }) => ({
+    const stackedData = d3.stack().keys(Object.keys(data.stackConfig))(
+      Object.entries(data.values).map(([group, { stack }]) => ({
         _group: group as unknown as number,
-        ...subgroups,
+        ...stack,
       }))
     );
 
@@ -71,7 +78,7 @@ export default function StackedBarChart({
     const xAxis = d3
       .axisBottom(xScale)
       .tickSize(0)
-      .tickFormat((d) => data.groups[d].title)
+      .tickFormat((d) => data.values[d].title)
       .tickPadding(10);
     const xAxisGroup = chart
       .append("g")
@@ -89,6 +96,7 @@ export default function StackedBarChart({
     const yAxis = d3
       .axisLeft(yScale)
       .tickSize(-containerWidth + margin.right + margin.left)
+      .tickFormat((d) => numeral(d).format("0a"))
       .ticks(5);
     const yAxisGroup = chart
       .append("g")
@@ -116,7 +124,7 @@ export default function StackedBarChart({
         .data(stackedData)
         .enter()
         .append("g")
-        .attr("fill", (d) => data.subgroups[d.key].color)
+        .attr("fill", (d) => data.stackConfig[d.key].color)
         .selectAll("rect")
         .data((d) => d)
         .enter()
@@ -139,7 +147,7 @@ export default function StackedBarChart({
         .data([lastStackedDataItem])
         .enter()
         .append("g")
-        .attr("fill", () => data.subgroups[lastStackedDataItem.key].color)
+        .attr("fill", () => data.stackConfig[lastStackedDataItem.key].color)
         .selectAll("path")
         .data((d) => d)
         .enter()
