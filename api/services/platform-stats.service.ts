@@ -8,7 +8,7 @@ export interface TotalPlatformStats extends Stats {
 }
 
 export interface DayPlatformStats extends TotalPlatformStats {
-  date: Date;
+  date: string;
 }
 
 export class PlatformStatsService {

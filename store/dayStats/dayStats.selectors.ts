@@ -1,13 +1,16 @@
 import { createSelector } from "@reduxjs/toolkit";
 
+import { DayStats } from "@/api/services/stats.service";
 import { TimelineDataItem } from "@/shared/timeline";
 
 import { getLoadingStateSelectors } from "../shared/loading";
+import { DayStatsSliceState } from "../shared/dayStats";
 import { RootState } from "../store";
-import { DayStatsSliceState, dayStatsAdapter } from "./dayStats.slice";
+
+import { dayStatsAdapter, dayStatsSliceName } from "./dayStats.slice";
 
 const getDayStatsState = (rootState: RootState) =>
-  rootState.dayStats as DayStatsSliceState;
+  rootState[dayStatsSliceName] as DayStatsSliceState<DayStats>;
 
 const entitySelectors =
   dayStatsAdapter.getSelectors<RootState>(getDayStatsState);

@@ -1,4 +1,11 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
+
+import { AppDispatch } from "@/store/store";
+import { dayPlatformStatsSelectors } from "@/store/dayPlatformStats/dayPlatformStats.selectors";
+import { filtersSelectors } from "@/store/filters/filters.selectors";
+import { fetchDayPlatformStats } from "@/store/dayPlatformStats/dayPlatformStats.slice";
 
 import StackedBarChart from "../StackedBarChart/StackedBarChart";
 
@@ -11,7 +18,20 @@ export interface BreakdownStatsChartProps {
 export default function BreakdownStatsChart({
   className,
 }: BreakdownStatsChartProps) {
-  const data = {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const data = useSelector(dayPlatformStatsSelectors.selectAll);
+  const isLoadingIdle = useSelector(dayPlatformStatsSelectors.getIsLoadingIdle);
+  const { startDate, endDate } = useSelector(filtersSelectors.getDateRange);
+
+  useEffect(() => {
+    if (isLoadingIdle) {
+      dispatch(fetchDayPlatformStats({ startDate, endDate }));
+    }
+  }, [startDate, endDate, isLoadingIdle, dispatch]);
+
+  console.log(data);
+  const chartData = {
     groups: {
       "2023-04-01": { title: "1 Apr" },
       "2023-04-02": { title: "2 Apr" },
@@ -77,7 +97,7 @@ export default function BreakdownStatsChart({
   return (
     <div className={classNames(styles.container, className)}>
       <div className={styles.row}></div>
-      <StackedBarChart className={styles.chart} data={data} />
+      <StackedBarChart className={styles.chart} data={chartData} />
     </div>
   );
 }

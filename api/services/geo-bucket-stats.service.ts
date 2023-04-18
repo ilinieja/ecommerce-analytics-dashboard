@@ -8,7 +8,7 @@ export interface TotalGeoBucketStats extends Stats {
 }
 
 export interface DayGeoBucketStats extends TotalGeoBucketStats {
-  date: Date;
+  date: string;
 }
 
 export class GeoBucketStatsService {

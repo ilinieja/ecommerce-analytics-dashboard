@@ -27,7 +27,7 @@ async function populateTestData() {
 
 function createRandomOrder() {
   const fiveYearsAgo = new Date();
-  fiveYearsAgo.setFullYear(fiveYearsAgo.getFullYear() - 5);
+  fiveYearsAgo.setFullYear(fiveYearsAgo.getFullYear() - 1);
 
   return new Order({
     customer: {

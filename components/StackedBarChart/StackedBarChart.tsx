@@ -145,7 +145,6 @@ export default function StackedBarChart({
         .enter()
         .append("path")
         .attr("d", (d) => {
-          console.log(d);
           const xStart =
             (xScale(d.data._group as unknown as string) as number) +
             margin.left;
