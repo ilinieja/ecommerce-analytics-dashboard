@@ -4,7 +4,7 @@ import { ReactElement, ReactNode } from "react";
 import { Open_Sans } from "next/font/google";
 import { Provider as StoreProvider } from "react-redux";
 
-const font = Open_Sans({ subsets: ["latin"] });
+const font = Open_Sans({ subsets: ["latin"], weight: ["300", "500", "600"] });
 
 import "@/styles/globals.css";
 import { getDashboardLayout } from "@/layouts/DashboardLayout/DashboardLayout";

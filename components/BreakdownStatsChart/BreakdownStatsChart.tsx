@@ -16,6 +16,7 @@ import StackedBarChart, {
 import ChartLegend from "../ChartLegend/ChartLegend";
 
 import styles from "./BreakdownStatsChart.module.css";
+import Select from "../Select/Select";
 
 export interface BreakdownStatsChartProps {
   className?: string;
@@ -69,9 +70,33 @@ export default function BreakdownStatsChart({
     stackConfig,
   };
 
+  const dataSelectItems = [
+    { title: "Revenue by platform", value: "revenue_by_platform" },
+    { title: "Orders by platform", value: "orders_by_platform" },
+    {
+      title: "Avg order revenue by platform",
+      value: "avg_order_revenue_by_platform",
+    },
+    { title: "Revenue by geography", value: "revenue_by_geography" },
+    { title: "Orders by geography", value: "orders_by_geography" },
+    {
+      title: "Avg order revenue by geography",
+      value: "avg_order_revenue_by_geography",
+    },
+  ];
+
+  const handleDataSelectChange = (value: string) => {
+    console.log(value);
+  };
+
   return (
     <div className={classNames(styles.container, className)}>
       <div className={styles.row}>
+        <Select
+          items={dataSelectItems}
+          selected={dataSelectItems[1].value}
+          onChange={handleDataSelectChange}
+        />
         <ChartLegend
           className={styles.rightAligned}
           items={Object.values(stackConfig)}

@@ -11,7 +11,7 @@ export default function ChartLegend({ items, className }: ChartLegendProps) {
   return (
     <div className={classNames(styles.container, className)}>
       {items.map((item) => (
-        <div className={styles.row}>
+        <div className={styles.row} key={item.title}>
           <div
             className={styles.colorIndicator}
             style={{ backgroundColor: item.color }}
