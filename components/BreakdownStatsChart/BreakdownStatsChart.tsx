@@ -3,11 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
 import { format } from "date-fns";
 
-import { AppDispatch } from "@/store/store";
+import { AppDispatch, RootState } from "@/store/store";
 import { dayPlatformStatsSelectors } from "@/store/dayPlatformStats/dayPlatformStats.selectors";
 import { filtersSelectors } from "@/store/filters/filters.selectors";
 import { fetchDayPlatformStats } from "@/store/dayPlatformStats/dayPlatformStats.slice";
 import SvgDotsLoader from "@/icons/SvgDotsLoader";
+import { DayPlatformStats } from "@/api/services/platform-stats.service";
+import {
+  ChartDimension,
+  breakdownStatsChartDimensionUpdated,
+} from "@/store/filters/filters.slice";
 
 import StackedBarChart, {
   StackedBarChartDataItem,
@@ -24,23 +29,52 @@ export interface BreakdownStatsChartProps {
 
 const CHART_PALETTE = ["#343434", "#665191", "#dd8057", "#4875c3"];
 
+interface ChartDimensionConfig {
+  title: string;
+  fetch: Function;
+  getValue: Function;
+  getIsLoadingSuccess: (state: RootState) => boolean;
+}
+
+const DIMENSION_CONFIGS: Record<ChartDimension, ChartDimensionConfig> = {
+  revenue_by_platform: {
+    title: "Revenue by platform",
+    fetch: fetchDayPlatformStats,
+    getValue: ({ revenue }: DayPlatformStats) => revenue,
+    getIsLoadingSuccess: dayPlatformStatsSelectors.getIsLoadingSuccess,
+  },
+  orders_by_platform: {
+    title: "Orders by platform",
+    fetch: fetchDayPlatformStats,
+    getValue: ({ orders }: DayPlatformStats) => orders,
+    getIsLoadingSuccess: dayPlatformStatsSelectors.getIsLoadingSuccess,
+  },
+  average_order_revenue_by_platform: {
+    title: "Avg order revenue by platform",
+    fetch: fetchDayPlatformStats,
+    getValue: ({ averageOrderRevenue }: DayPlatformStats) =>
+      averageOrderRevenue,
+    getIsLoadingSuccess: dayPlatformStatsSelectors.getIsLoadingSuccess,
+  },
+};
+
 export default function BreakdownStatsChart({
   className,
 }: BreakdownStatsChartProps) {
   const dispatch = useDispatch<AppDispatch>();
 
-  const data = useSelector(dayPlatformStatsSelectors.selectAll);
-  const isLoadingIdle = useSelector(dayPlatformStatsSelectors.getIsLoadingIdle);
-  const isLoadingSuccess = useSelector(
-    dayPlatformStatsSelectors.getIsLoadingSuccess
+  const selectedDimension = useSelector(
+    filtersSelectors.getBreakdownStatsChartDimension
   );
+  const dimensionConfig = DIMENSION_CONFIGS[selectedDimension];
+
+  const data = useSelector(dayPlatformStatsSelectors.selectAll);
+  const isLoadingSuccess = useSelector(dimensionConfig.getIsLoadingSuccess);
   const { startDate, endDate } = useSelector(filtersSelectors.getDateRange);
 
   useEffect(() => {
-    if (isLoadingIdle) {
-      dispatch(fetchDayPlatformStats({ startDate, endDate }));
-    }
-  }, [startDate, endDate, isLoadingIdle, dispatch]);
+    dispatch(dimensionConfig.fetch({ startDate, endDate }));
+  }, [startDate, endDate, dimensionConfig, dispatch]);
 
   const values: { [group: string]: StackedBarChartDataItem } = {};
   const stackConfig: { [stack: string]: StackedBarStackItem } = {};
@@ -51,10 +85,10 @@ export default function BreakdownStatsChart({
     if (!values[date]) {
       values[date] = {
         title: format(new Date(date), "d MMM"),
-        stack: { [platform]: data[i].revenue },
+        stack: { [platform]: dimensionConfig.getValue(data[i]) },
       };
     } else {
-      values[date].stack[platform] = data[i].revenue;
+      values[date].stack[platform] = dimensionConfig.getValue(data[i]);
     }
 
     if (!stackConfig[platform]) {
@@ -70,31 +104,18 @@ export default function BreakdownStatsChart({
     stackConfig,
   };
 
-  const dataSelectItems = [
-    { title: "Revenue by platform", value: "revenue_by_platform" },
-    { title: "Orders by platform", value: "orders_by_platform" },
-    {
-      title: "Avg order revenue by platform",
-      value: "avg_order_revenue_by_platform",
-    },
-    { title: "Revenue by geography", value: "revenue_by_geography" },
-    { title: "Orders by geography", value: "orders_by_geography" },
-    {
-      title: "Avg order revenue by geography",
-      value: "avg_order_revenue_by_geography",
-    },
-  ];
-
   const handleDataSelectChange = (value: string) => {
-    console.log(value);
+    dispatch(breakdownStatsChartDimensionUpdated({ value }));
   };
 
   return (
     <div className={classNames(styles.container, className)}>
       <div className={styles.row}>
         <Select
-          items={dataSelectItems}
-          selected={dataSelectItems[1].value}
+          items={Object.entries(DIMENSION_CONFIGS).map(
+            ([value, { title }]) => ({ value, title })
+          )}
+          selected={selectedDimension}
           onChange={handleDataSelectChange}
         />
         <ChartLegend

@@ -15,6 +15,12 @@ const getDateRange = createSelector(
   })
 );
 
+const getBreakdownStatsChartDimension = createSelector(
+  getFiltersState,
+  ({ breakdownStatsChartDimension }) => breakdownStatsChartDimension
+);
+
 export const filtersSelectors = {
   getDateRange,
+  getBreakdownStatsChartDimension,
 };
