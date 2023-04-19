@@ -6,6 +6,10 @@ import {
   dayPlatformStatsSlice,
   dayPlatformStatsSliceName,
 } from "./dayPlatformStats/dayPlatformStats.slice";
+import {
+  dayGeoBucketStatsSlice,
+  dayGeoBucketStatsSliceName,
+} from "./dayGeoBucketStats/dayGeoBucketStats.slice";
 import { filtersSlice } from "./filters/filters.slice";
 
 const rootReducer = combineReducers({
@@ -13,6 +17,7 @@ const rootReducer = combineReducers({
   filters: filtersSlice.reducer,
   [dayStatsSliceName]: dayStatsSlice.reducer,
   [dayPlatformStatsSliceName]: dayPlatformStatsSlice.reducer,
+  [dayGeoBucketStatsSliceName]: dayGeoBucketStatsSlice.reducer,
 });
 
 export const setupStore = () =>

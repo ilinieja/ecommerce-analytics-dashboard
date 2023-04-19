@@ -11,7 +11,10 @@ const DEFAULT_DATERANGE = {
 export type ChartDimension =
   | "revenue_by_platform"
   | "orders_by_platform"
-  | "average_order_revenue_by_platform";
+  | "average_order_revenue_by_platform"
+  | "revenue_by_geo_bucket"
+  | "orders_by_geo_bucket"
+  | "average_order_revenue_by_geo_bucket";
 const DEFAULT_BREAKDOWN_STATS_CHART_DIMENSION = "revenue_by_platform";
 
 export interface FiltersState {

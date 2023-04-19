@@ -96,7 +96,7 @@ export default function StackedBarChart({
     const yAxis = d3
       .axisLeft(yScale)
       .tickSize(-containerWidth + margin.right + margin.left)
-      .tickFormat((d) => numeral(d).format("0a"))
+      .tickFormat((d) => numeral(d).format("0.[0]a"))
       .ticks(5);
     const yAxisGroup = chart
       .append("g")

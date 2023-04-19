@@ -22,6 +22,9 @@ import ChartLegend from "../ChartLegend/ChartLegend";
 
 import styles from "./BreakdownStatsChart.module.css";
 import Select from "../Select/Select";
+import { fetchDayGeoBucketStats } from "@/store/dayGeoBucketStats/dayGeoBucketStats.slice";
+import { DayGeoBucketStats } from "@/api/services/geo-bucket-stats.service";
+import { dayGeoBucketStatsSelectors } from "@/store/dayGeoBucketStats/dayGeoBucketStats.selectors";
 
 export interface BreakdownStatsChartProps {
   className?: string;
@@ -32,29 +35,64 @@ const CHART_PALETTE = ["#343434", "#665191", "#dd8057", "#4875c3"];
 interface ChartDimensionConfig {
   title: string;
   fetch: Function;
+  getData: (state: RootState) => unknown;
   getValue: Function;
+  getDimension: Function;
   getIsLoadingSuccess: (state: RootState) => boolean;
 }
 
+// TODO: Move config selectors to separate selectors file,
+// they'll depend on filter selectors to switch between data sources.
 const DIMENSION_CONFIGS: Record<ChartDimension, ChartDimensionConfig> = {
   revenue_by_platform: {
     title: "Revenue by platform",
     fetch: fetchDayPlatformStats,
+    getData: dayPlatformStatsSelectors.selectAll,
     getValue: ({ revenue }: DayPlatformStats) => revenue,
+    getDimension: ({ platform }: DayPlatformStats) => platform,
     getIsLoadingSuccess: dayPlatformStatsSelectors.getIsLoadingSuccess,
   },
   orders_by_platform: {
     title: "Orders by platform",
     fetch: fetchDayPlatformStats,
+    getData: dayPlatformStatsSelectors.selectAll,
     getValue: ({ orders }: DayPlatformStats) => orders,
+    getDimension: ({ platform }: DayPlatformStats) => platform,
     getIsLoadingSuccess: dayPlatformStatsSelectors.getIsLoadingSuccess,
   },
   average_order_revenue_by_platform: {
     title: "Avg order revenue by platform",
     fetch: fetchDayPlatformStats,
+    getData: dayPlatformStatsSelectors.selectAll,
     getValue: ({ averageOrderRevenue }: DayPlatformStats) =>
       averageOrderRevenue,
+    getDimension: ({ platform }: DayPlatformStats) => platform,
     getIsLoadingSuccess: dayPlatformStatsSelectors.getIsLoadingSuccess,
+  },
+  revenue_by_geo_bucket: {
+    title: "Revenue by location",
+    fetch: fetchDayGeoBucketStats,
+    getData: dayGeoBucketStatsSelectors.selectAll,
+    getValue: ({ revenue }: DayGeoBucketStats) => revenue,
+    getDimension: ({ geoBucket }: DayGeoBucketStats) => geoBucket,
+    getIsLoadingSuccess: dayGeoBucketStatsSelectors.getIsLoadingSuccess,
+  },
+  orders_by_geo_bucket: {
+    title: "Orders by location",
+    fetch: fetchDayGeoBucketStats,
+    getData: dayGeoBucketStatsSelectors.selectAll,
+    getValue: ({ orders }: DayGeoBucketStats) => orders,
+    getDimension: ({ geoBucket }: DayGeoBucketStats) => geoBucket,
+    getIsLoadingSuccess: dayGeoBucketStatsSelectors.getIsLoadingSuccess,
+  },
+  average_order_revenue_by_geo_bucket: {
+    title: "Avg order revenue by location",
+    fetch: fetchDayGeoBucketStats,
+    getData: dayGeoBucketStatsSelectors.selectAll,
+    getValue: ({ averageOrderRevenue }: DayGeoBucketStats) =>
+      averageOrderRevenue,
+    getDimension: ({ geoBucket }: DayGeoBucketStats) => geoBucket,
+    getIsLoadingSuccess: dayGeoBucketStatsSelectors.getIsLoadingSuccess,
   },
 };
 
@@ -68,7 +106,9 @@ export default function BreakdownStatsChart({
   );
   const dimensionConfig = DIMENSION_CONFIGS[selectedDimension];
 
-  const data = useSelector(dayPlatformStatsSelectors.selectAll);
+  const data = useSelector(dimensionConfig.getData) as
+    | DayGeoBucketStats[]
+    | DayPlatformStats[];
   const isLoadingSuccess = useSelector(dimensionConfig.getIsLoadingSuccess);
   const { startDate, endDate } = useSelector(filtersSelectors.getDateRange);
 
@@ -81,19 +121,19 @@ export default function BreakdownStatsChart({
 
   for (let i = 0; i < data.length; i++) {
     const date = data[i].date;
-    const platform = data[i].platform;
+    const dimension = dimensionConfig.getDimension(data[i]);
     if (!values[date]) {
       values[date] = {
         title: format(new Date(date), "d MMM"),
-        stack: { [platform]: dimensionConfig.getValue(data[i]) },
+        stack: { [dimension]: dimensionConfig.getValue(data[i]) },
       };
     } else {
-      values[date].stack[platform] = dimensionConfig.getValue(data[i]);
+      values[date].stack[dimension] = dimensionConfig.getValue(data[i]);
     }
 
-    if (!stackConfig[platform]) {
-      stackConfig[platform] = {
-        title: platform,
+    if (!stackConfig[dimension]) {
+      stackConfig[dimension] = {
+        title: dimension,
         color: CHART_PALETTE[Object.keys(stackConfig).length],
       };
     }
