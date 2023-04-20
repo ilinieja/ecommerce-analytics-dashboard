@@ -5,14 +5,13 @@ import {
   StatsService,
   TotalStats,
 } from "@/api/services/stats.service";
+import {
+  DayStatsResponse as DayStatsResponseGeneric,
+  TotalStatsResponse as TotalStatsResponseGeneric,
+} from "@/api/shared/stats";
 
-export interface DayStatsResponse {
-  dayStats: DayStats[];
-}
-
-export interface TotalStatsResponse {
-  totalStats: TotalStats;
-}
+export type DayStatsResponse = DayStatsResponseGeneric<DayStats>;
+export type TotalStatsResponse = TotalStatsResponseGeneric<TotalStats>;
 
 class StatsHandler {
   private StatsService = new StatsService();

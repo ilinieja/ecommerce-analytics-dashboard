@@ -42,6 +42,6 @@ export class StatsService {
       },
     ]).exec();
 
-    return totalStats[0];
+    return totalStats;
   }
 }

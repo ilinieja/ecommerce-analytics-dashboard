@@ -4,6 +4,13 @@ export interface Stats {
   averageOrderRevenue: number;
 }
 
+export interface DayStatsResponse<T> {
+  dayStats: T[];
+}
+export interface TotalStatsResponse<T> {
+  totalStats: T[];
+}
+
 export function getStatsProjection() {
   return {
     _id: false,

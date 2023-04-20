@@ -1,16 +1,13 @@
 import { createSelector } from "@reduxjs/toolkit";
 
-import { DayStats } from "@/api/services/stats.service";
 import { TimelineDataItem } from "@/shared/timeline";
 
-import { getLoadingStateSelectors } from "../shared/loading";
-import { DayStatsSliceState } from "../shared/dayStats";
+import { getLoadingStateSelectors } from "../shared/loadingStore";
 import { RootState } from "../store";
 
 import { dayStatsAdapter, dayStatsSliceName } from "./dayStats.slice";
 
-const getDayStatsState = (rootState: RootState) =>
-  rootState[dayStatsSliceName] as DayStatsSliceState<DayStats>;
+const getDayStatsState = (rootState: RootState) => rootState[dayStatsSliceName];
 
 const entitySelectors =
   dayStatsAdapter.getSelectors<RootState>(getDayStatsState);
@@ -20,6 +17,7 @@ interface GetTimelineOptions {
   maxPoints?: number;
 }
 
+// TODO: Remove maxPoints after adding switch between days/weeks/months fetching.
 const getTimeline = ({ maxPoints, valueField }: GetTimelineOptions) =>
   createSelector(entitySelectors.selectAll, (dayStats): TimelineDataItem[] => {
     if (!dayStats.length) {

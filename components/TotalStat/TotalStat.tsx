@@ -9,7 +9,7 @@ import styles from "./TotalStat.module.css";
 
 export interface TotalStatProps {
   name: string;
-  totalValue: number;
+  totalValue?: number;
   valueFormat?: string;
   valuePrefix?: string;
   timelineData?: TimelineDataItem[];

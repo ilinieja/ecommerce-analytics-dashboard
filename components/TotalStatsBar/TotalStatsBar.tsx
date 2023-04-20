@@ -1,9 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 
-import { fetchTotalStats } from "@/store/totalStats/totalStats.slice";
+import {
+  fetchTotalStats,
+  getTotalStatsId,
+} from "@/store/totalStats/totalStats.slice";
 import { fetchDayStats } from "@/store/dayStats/dayStats.slice";
-import { AppDispatch } from "@/store/store";
+import { AppDispatch, RootState } from "@/store/store";
 import { totalStatsSelectors } from "@/store/totalStats/totalStats.selectors";
 import SvgDotsLoader from "@/icons/SvgDotsLoader";
 import { dayStatsSelectors } from "@/store/dayStats/dayStats.selectors";
@@ -14,17 +17,16 @@ import styles from "./TotalStatsBar.module.css";
 
 export default function TotalStatsBar() {
   const dispatch = useDispatch<AppDispatch>();
-  const isLoadingIdle = useSelector(totalStatsSelectors.getIsLoadingIdle);
   const isLoadingSuccess = useSelector(totalStatsSelectors.getIsLoadingSuccess);
 
   // TODO: Add date-bucketing option selection (day, week, month, year) for timelines.
   const { startDate, endDate } = useSelector(filtersSelectors.getDateRange);
 
-  const revenue = useSelector(totalStatsSelectors.getTotalRevenue);
-  const orders = useSelector(totalStatsSelectors.getTotalOrders);
-  const averageOrderValue = useSelector(
-    totalStatsSelectors.getTotalAverageOrderRevenue
+  const selectTotalStats = useCallback(
+    totalStatsSelectors.makeSelectTotalStats(startDate, endDate),
+    [startDate, endDate]
   );
+  const totalStats = useSelector(selectTotalStats);
 
   const revenuesTimeline = useSelector(
     dayStatsSelectors.getRevenuesTimeline(10)
@@ -35,28 +37,26 @@ export default function TotalStatsBar() {
   );
 
   useEffect(() => {
-    if (isLoadingIdle) {
-      dispatch(fetchTotalStats({ startDate, endDate }));
-      dispatch(fetchDayStats({ startDate, endDate }));
-    }
-  }, [startDate, endDate, isLoadingIdle, dispatch]);
+    dispatch(fetchTotalStats({ startDate, endDate }));
+    dispatch(fetchDayStats({ startDate, endDate }));
+  }, [startDate, endDate, dispatch]);
 
   return (
     <div className={styles.card}>
       <TotalStat
         name="Revenue"
-        totalValue={revenue}
+        totalValue={totalStats?.revenue}
         valuePrefix="$"
         timelineData={revenuesTimeline}
       />
       <TotalStat
         name="Orders"
-        totalValue={orders}
+        totalValue={totalStats?.orders}
         timelineData={ordersTimeline}
       />
       <TotalStat
         name="Avg order value"
-        totalValue={averageOrderValue}
+        totalValue={totalStats?.averageOrderRevenue}
         valueFormat="0,0.[00]a"
         valuePrefix="$"
         timelineData={averageOrderRevenuesTimeline}

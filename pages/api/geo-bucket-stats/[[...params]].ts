@@ -12,15 +12,12 @@ import {
   TotalGeoBucketStats,
 } from "@/api/services/geo-bucket-stats.service";
 import { GeoBucket } from "@/api/models/order.model";
+import { DayStatsResponse, TotalStatsResponse } from "@/api/shared/stats";
 
-export interface DayGeoBucketStatsResponse {
-  dayStats: DayGeoBucketStats[];
-}
+export type TotalGeoBucketStatsResponse =
+  TotalStatsResponse<TotalGeoBucketStats>;
 
-export interface TotalGeoBucketStatsResponse {
-  totalStats: TotalGeoBucketStats[];
-}
-
+export type DayGeoBucketStatsResponse = DayStatsResponse<DayGeoBucketStats>;
 class GeoBucketStatsHandler {
   private statsService = new GeoBucketStatsService();
 

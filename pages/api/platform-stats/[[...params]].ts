@@ -12,14 +12,10 @@ import {
   TotalPlatformStats,
 } from "@/api/services/platform-stats.service";
 import { Platform } from "@/api/models/order.model";
+import { DayStatsResponse, TotalStatsResponse } from "@/api/shared/stats";
 
-export interface DayPlatformStatsResponse {
-  dayStats: DayPlatformStats[];
-}
-
-export interface TotalPlatformStatsResponse {
-  totalStats: TotalPlatformStats[];
-}
+export type DayPlatformStatsResponse = DayStatsResponse<DayPlatformStats>;
+export type TotalPlatformStatsResponse = TotalStatsResponse<TotalPlatformStats>;
 
 class DayPlatformStatsHandler {
   private statsService = new PlatformStatsService();

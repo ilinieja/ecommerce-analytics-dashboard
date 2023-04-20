@@ -1,29 +1,22 @@
-import { createSelector } from "@reduxjs/toolkit";
-import { getLoadingStateSelectors } from "../shared/loading";
+import { getLoadingStateSelectors } from "../shared/loadingStore";
 import { RootState } from "../store";
-import { TotalStatsSliceState } from "./totalStats.slice";
+import {
+  getTotalStatsId,
+  totalStatsAdapter,
+  totalStatsSliceName,
+} from "./totalStats.slice";
 
 const getTotalStatsState = (rootState: RootState) =>
-  rootState.totalStats as TotalStatsSliceState;
+  rootState[totalStatsSliceName];
 
-const getTotalRevenue = createSelector(
-  getTotalStatsState,
-  (totalStats) => totalStats.revenue
-);
+const entitySelectors = totalStatsAdapter.getSelectors(getTotalStatsState);
 
-const getTotalOrders = createSelector(
-  getTotalStatsState,
-  (totalStats) => totalStats.orders
-);
-
-const getTotalAverageOrderRevenue = createSelector(
-  getTotalStatsState,
-  (totalStats) => totalStats.averageOrderRevenue
-);
+const makeSelectTotalStats =
+  (startDate: string, endDate: string) => (state: RootState) =>
+    entitySelectors.selectById(state, getTotalStatsId(startDate, endDate));
 
 export const totalStatsSelectors = {
-  getTotalRevenue,
-  getTotalOrders,
-  getTotalAverageOrderRevenue,
+  makeSelectTotalStats,
+  ...entitySelectors,
   ...getLoadingStateSelectors(getTotalStatsState),
 };

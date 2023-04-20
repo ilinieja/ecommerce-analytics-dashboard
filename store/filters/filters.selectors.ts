@@ -9,10 +9,7 @@ const getFiltersState = (rootState: RootState) =>
 
 const getDateRange = createSelector(
   getFiltersState,
-  ({ dateRange: { startDate, endDate } }) => ({
-    startDate: new Date(startDate),
-    endDate: new Date(endDate),
-  })
+  ({ dateRange }) => dateRange
 );
 
 const getBreakdownStatsChartDimension = createSelector(

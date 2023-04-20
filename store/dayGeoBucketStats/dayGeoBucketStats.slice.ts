@@ -1,7 +1,7 @@
 import { DayGeoBucketStats } from "@/api/services/geo-bucket-stats.service";
 import { DayGeoBucketStatsResponse } from "@/pages/api/geo-bucket-stats/[[...params]]";
 
-import { getDayStatsStore } from "../shared/dayStats";
+import { createStatsStore } from "../shared/statsStore";
 
 export const dayGeoBucketStatsSliceName = "dayGeoBucketStats";
 
@@ -9,8 +9,9 @@ export const {
   slice: dayGeoBucketStatsSlice,
   adapter: dayGeoBucketStatsAdapter,
   fetch: fetchDayGeoBucketStats,
-} = getDayStatsStore<DayGeoBucketStats, DayGeoBucketStatsResponse>({
+} = createStatsStore<DayGeoBucketStats, DayGeoBucketStatsResponse>({
   name: dayGeoBucketStatsSliceName,
   apiPath: "api/geo-bucket-stats/day",
+  getEntities: (response) => response.dayStats,
   selectId: (entity) => `${entity.date}_${entity.geoBucket}`,
 });
