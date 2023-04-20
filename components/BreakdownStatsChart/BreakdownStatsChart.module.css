@@ -7,7 +7,7 @@
 
 .row {
     display: flex;
-    padding: 0 12px;
+    padding: 0 12px 10px;
 }
 
 .chart {

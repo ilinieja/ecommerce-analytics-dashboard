@@ -2,6 +2,7 @@ import TotalStatsBar from "@/components/TotalStatsBar/TotalStatsBar";
 
 import styles from "./index.module.css";
 import BreakdownStatsChart from "@/components/BreakdownStatsChart/BreakdownStatsChart";
+import TopPlatformsList from "@/components/TopPlatformsList/TopPlatformsList";
 
 export default function Overview() {
   return (
@@ -12,6 +13,7 @@ export default function Overview() {
       <section className={styles.pageContent}>
         <TotalStatsBar />
         <BreakdownStatsChart />
+        <TopPlatformsList />
       </section>
     </>
   );

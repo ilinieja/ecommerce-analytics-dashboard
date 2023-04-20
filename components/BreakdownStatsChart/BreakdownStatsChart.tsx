@@ -34,7 +34,7 @@ const CHART_PALETTE = ["#343434", "#665191", "#dd8057", "#4875c3"];
 
 interface ChartDimensionConfig {
   title: string;
-  fetch: Function;
+  fetchData: Function;
   getData: (state: RootState) => unknown;
   getValue: Function;
   getDimension: Function;
@@ -46,7 +46,7 @@ interface ChartDimensionConfig {
 const DIMENSION_CONFIGS: Record<ChartDimension, ChartDimensionConfig> = {
   revenue_by_platform: {
     title: "Revenue by platform",
-    fetch: fetchDayPlatformStats,
+    fetchData: fetchDayPlatformStats,
     getData: dayPlatformStatsSelectors.selectAll,
     getValue: ({ revenue }: DayPlatformStats) => revenue,
     getDimension: ({ platform }: DayPlatformStats) => platform,
@@ -54,7 +54,7 @@ const DIMENSION_CONFIGS: Record<ChartDimension, ChartDimensionConfig> = {
   },
   orders_by_platform: {
     title: "Orders by platform",
-    fetch: fetchDayPlatformStats,
+    fetchData: fetchDayPlatformStats,
     getData: dayPlatformStatsSelectors.selectAll,
     getValue: ({ orders }: DayPlatformStats) => orders,
     getDimension: ({ platform }: DayPlatformStats) => platform,
@@ -62,7 +62,7 @@ const DIMENSION_CONFIGS: Record<ChartDimension, ChartDimensionConfig> = {
   },
   average_order_revenue_by_platform: {
     title: "Avg order revenue by platform",
-    fetch: fetchDayPlatformStats,
+    fetchData: fetchDayPlatformStats,
     getData: dayPlatformStatsSelectors.selectAll,
     getValue: ({ averageOrderRevenue }: DayPlatformStats) =>
       averageOrderRevenue,
@@ -71,7 +71,7 @@ const DIMENSION_CONFIGS: Record<ChartDimension, ChartDimensionConfig> = {
   },
   revenue_by_geo_bucket: {
     title: "Revenue by location",
-    fetch: fetchDayGeoBucketStats,
+    fetchData: fetchDayGeoBucketStats,
     getData: dayGeoBucketStatsSelectors.selectAll,
     getValue: ({ revenue }: DayGeoBucketStats) => revenue,
     getDimension: ({ geoBucket }: DayGeoBucketStats) => geoBucket,
@@ -79,7 +79,7 @@ const DIMENSION_CONFIGS: Record<ChartDimension, ChartDimensionConfig> = {
   },
   orders_by_geo_bucket: {
     title: "Orders by location",
-    fetch: fetchDayGeoBucketStats,
+    fetchData: fetchDayGeoBucketStats,
     getData: dayGeoBucketStatsSelectors.selectAll,
     getValue: ({ orders }: DayGeoBucketStats) => orders,
     getDimension: ({ geoBucket }: DayGeoBucketStats) => geoBucket,
@@ -87,7 +87,7 @@ const DIMENSION_CONFIGS: Record<ChartDimension, ChartDimensionConfig> = {
   },
   average_order_revenue_by_geo_bucket: {
     title: "Avg order revenue by location",
-    fetch: fetchDayGeoBucketStats,
+    fetchData: fetchDayGeoBucketStats,
     getData: dayGeoBucketStatsSelectors.selectAll,
     getValue: ({ averageOrderRevenue }: DayGeoBucketStats) =>
       averageOrderRevenue,
@@ -112,8 +112,10 @@ export default function BreakdownStatsChart({
   const isLoadingSuccess = useSelector(dimensionConfig.getIsLoadingSuccess);
   const { startDate, endDate } = useSelector(filtersSelectors.getDateRange);
 
+  // TODO: Add lastLoaded (params to timestamp map) for data
+  // and don't fetch if there's fresh version available.
   useEffect(() => {
-    dispatch(dimensionConfig.fetch({ startDate, endDate }));
+    dispatch(dimensionConfig.fetchData({ startDate, endDate }));
   }, [startDate, endDate, dimensionConfig, dispatch]);
 
   const values: { [group: string]: StackedBarChartDataItem } = {};
