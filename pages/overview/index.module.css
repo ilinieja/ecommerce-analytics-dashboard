@@ -1,6 +1,7 @@
 .pageHeader {
   display: flex;
   padding: 30px;
+  flex: auto;
 }
 
 .pageTitle {
@@ -14,4 +15,5 @@
     flex-direction: column;
     gap: 20px;
     padding: 0 30px 60px;
+    overflow: auto;
 }

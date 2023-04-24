@@ -57,5 +57,5 @@ export async function calculateDayGeoBucketStats() {
 }
 
 // This prevents Mongoose from recompiling the model.
-export default mongoose.models.DayGeoBucketStats ||
+export default mongoose.models?.DayGeoBucketStats ||
   mongoose.model("DayGeoBucketStats", DayGeoBucketStats);

@@ -43,4 +43,5 @@ export async function calculateDayStats() {
 // TODO: Add week, month, year and total calculations (here and in breakdown models).
 
 // This prevents Mongoose from recompiling the model.
-export default mongoose.models.DayStats || mongoose.model("DayStats", DayStats);
+export default mongoose.models?.DayStats ||
+  mongoose.model("DayStats", DayStats);

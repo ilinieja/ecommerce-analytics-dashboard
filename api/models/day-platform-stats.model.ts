@@ -57,5 +57,5 @@ export async function calculateDayPlatformStats() {
 }
 
 // This prevents Mongoose from recompiling the model.
-export default mongoose.models.DayPlatformStats ||
+export default mongoose.models?.DayPlatformStats ||
   mongoose.model("DayPlatformStats", DayPlatformStats);

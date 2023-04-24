@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+
+// TODO: Move typings out of the model to prevent importing it in browser.
 export enum Platform {
   Amazon = "Amazon",
   Ebay = "Ebay",
@@ -54,4 +56,4 @@ const Order = new mongoose.Schema({
 });
 
 // This prevents Mongoose from recompiling the model.
-export default mongoose.models.Order || mongoose.model("Order", Order);
+export default mongoose.models?.Order || mongoose.model("Order", Order);
