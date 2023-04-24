@@ -1,6 +1,6 @@
 import { SVGProps } from "react";
 
-const SvgDotsLoader = (props: SVGProps<SVGSVGElement>) => (
+const SvgCircleLoader = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
@@ -35,4 +35,4 @@ const SvgDotsLoader = (props: SVGProps<SVGSVGElement>) => (
     </path>
   </svg>
 );
-export default SvgDotsLoader;
+export default SvgCircleLoader;

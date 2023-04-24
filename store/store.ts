@@ -1,10 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
+import { dayStatsSlice, dayStatsSliceName } from "./dayStats/dayStats.slice";
 import {
   totalStatsSlice,
   totalStatsSliceName,
 } from "./totalStats/totalStats.slice";
-import { dayStatsSlice, dayStatsSliceName } from "./dayStats/dayStats.slice";
 import {
   dayPlatformStatsSlice,
   dayPlatformStatsSliceName,
@@ -18,12 +18,17 @@ import {
   totalPlatformStatsSliceName,
 } from "./totalPlatformStats/totalPlatformStats.slice";
 import { filtersSlice } from "./filters/filters.slice";
+import {
+  totalGeoBucketStatsSlice,
+  totalGeoBucketStatsSliceName,
+} from "./totalGeoBucketStats/totalGeoBucketStats.slice";
 
 const rootReducer = combineReducers({
   filters: filtersSlice.reducer,
 
   [totalStatsSliceName]: totalStatsSlice.reducer,
   [totalPlatformStatsSliceName]: totalPlatformStatsSlice.reducer,
+  [totalGeoBucketStatsSliceName]: totalGeoBucketStatsSlice.reducer,
 
   [dayStatsSliceName]: dayStatsSlice.reducer,
   [dayPlatformStatsSliceName]: dayPlatformStatsSlice.reducer,

@@ -8,7 +8,7 @@ import { filtersSelectors } from "@/store/filters/filters.selectors";
 import { fetchTotalPlatformStats } from "@/store/totalPlatformStats/totalPlatformStats.slice";
 import { totalPlatformStatsSelectors } from "@/store/totalPlatformStats/totalPlatformStats.selectors";
 import { totalStatsSelectors } from "@/store/totalStats/totalStats.selectors";
-import SvgDotsLoader from "@/icons/SvgDotsLoader";
+import SvgCircleLoader from "@/icons/SvgDotsLoader";
 
 import TopPlatformsListItem from "./TopPlatformsListItem";
 import styles from "./TopPlatformsList.module.css";
@@ -69,7 +69,7 @@ export default function TopPlatformsList({ className }: TopPlatformListProps) {
       {/* TODO: Move loading indicator with logic into separate component (projecting children inside). */}
       {!isLoadingSuccess && (
         <div className={styles.loadingOverlay}>
-          <SvgDotsLoader className={styles.loadingIndicator} />
+          <SvgCircleLoader className={styles.loadingIndicator} />
         </div>
       )}
     </div>

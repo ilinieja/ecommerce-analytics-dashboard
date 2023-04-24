@@ -17,3 +17,12 @@
     padding: 0 30px 60px;
     overflow: auto;
 }
+
+.section {
+  display: flex;
+  gap: 20px;
+}
+
+.sectionItem {
+  flex: 1;
+}

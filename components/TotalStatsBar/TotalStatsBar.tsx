@@ -8,7 +8,7 @@ import {
 import { fetchDayStats } from "@/store/dayStats/dayStats.slice";
 import { AppDispatch, RootState } from "@/store/store";
 import { totalStatsSelectors } from "@/store/totalStats/totalStats.selectors";
-import SvgDotsLoader from "@/icons/SvgDotsLoader";
+import SvgCircleLoader from "@/icons/SvgDotsLoader";
 import { dayStatsSelectors } from "@/store/dayStats/dayStats.selectors";
 import { filtersSelectors } from "@/store/filters/filters.selectors";
 
@@ -63,7 +63,7 @@ export default function TotalStatsBar() {
       />
       {!isLoadingSuccess && (
         <div className={styles.loadingOverlay}>
-          <SvgDotsLoader className={styles.loadingIndicator} />
+          <SvgCircleLoader className={styles.loadingIndicator} />
         </div>
       )}
     </div>

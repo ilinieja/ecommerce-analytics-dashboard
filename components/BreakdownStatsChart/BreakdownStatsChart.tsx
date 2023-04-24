@@ -7,7 +7,7 @@ import { AppDispatch, RootState } from "@/store/store";
 import { dayPlatformStatsSelectors } from "@/store/dayPlatformStats/dayPlatformStats.selectors";
 import { filtersSelectors } from "@/store/filters/filters.selectors";
 import { fetchDayPlatformStats } from "@/store/dayPlatformStats/dayPlatformStats.slice";
-import SvgDotsLoader from "@/icons/SvgDotsLoader";
+import SvgCircleLoader from "@/icons/SvgDotsLoader";
 import { DayPlatformStats } from "@/api/services/platform-stats.service";
 import {
   ChartDimension,
@@ -212,7 +212,7 @@ export default function BreakdownStatsChart({
       <StackedBarChart className={styles.chart} data={chartData} />
       {!isLoadingSuccess && (
         <div className={styles.loadingOverlay}>
-          <SvgDotsLoader className={styles.loadingIndicator} />
+          <SvgCircleLoader className={styles.loadingIndicator} />
         </div>
       )}
     </div>

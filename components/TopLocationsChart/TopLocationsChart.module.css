@@ -1,0 +1,38 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 20px;
+    box-shadow: var(--shadow-1);
+    background: var(--color-light);
+    border-radius: 4px;
+    position: relative;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 8px;
+}
+
+.title {
+    margin: 0 0 12px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.loadingOverlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255, 0.8);
+    border-radius: 4px;
+}
+
+.loadingIndicator {
+    height: 50px;
+}

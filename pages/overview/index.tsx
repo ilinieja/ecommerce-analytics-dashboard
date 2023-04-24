@@ -3,6 +3,7 @@ import TotalStatsBar from "@/components/TotalStatsBar/TotalStatsBar";
 import styles from "./index.module.css";
 import BreakdownStatsChart from "@/components/BreakdownStatsChart/BreakdownStatsChart";
 import TopPlatformsList from "@/components/TopPlatformsList/TopPlatformsList";
+import { TopLocationsChart } from "@/components/TopLocationsChart/TopLocationsChart";
 
 // TODO: Detect content scroll and add shadow for the header.
 export default function Overview() {
@@ -14,7 +15,10 @@ export default function Overview() {
       <section className={styles.pageContent}>
         <TotalStatsBar />
         <BreakdownStatsChart />
-        <TopPlatformsList />
+        <div className={styles.section}>
+          <TopPlatformsList className={styles.sectionItem} />
+          <TopLocationsChart className={styles.sectionItem} />
+        </div>
       </section>
     </>
   );
