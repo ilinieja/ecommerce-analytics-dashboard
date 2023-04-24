@@ -1,6 +1,7 @@
 .row {
     display: flex;
     align-items: center;
+    flex: auto;
 }
 
 .column {
@@ -12,7 +13,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: auto;
+    flex: none;
     width: 42px;
     height: 42px;
     margin-right: 10px;
@@ -29,4 +30,8 @@
 .note {
     font-size: 0.925rem;
     font-weight: 400;
+}
+
+.rightAligned {
+    margin-left: auto;
 }

@@ -13,6 +13,8 @@ import SvgQuestionIcon from "@/icons/SvgQuestionIcon";
 import styles from "./TopPlatformsListItem.module.css";
 import numeral from "numeral";
 import classNames from "classnames";
+import { getPlatformColor } from "@/shared/charts";
+import { PercentageCircleChart } from "../PercentageCircleChart/PercentageCircleChart";
 
 export interface TopPlatformListItemProps {
   stats: TotalPlatformStats;
@@ -43,10 +45,17 @@ export default function TopPlatformListItem({
         <div className={styles.column}>
           <h3 className={styles.title}>{stats.platform}</h3>
           <span className={styles.note}>
-            {pluralize(stats.orders, "Order")} | $
-            {numeral(stats.averageOrderRevenue).format("0")} Avg revenue
+            ${numeral(stats.revenue).format("0a")} Revenue |
+            {numeral(stats.orders).format("0.0a")}{" "}
+            {pluralize(stats.orders, "Order")}
           </span>
         </div>
+        <PercentageCircleChart
+          className={styles.rightAligned}
+          color={getPlatformColor(stats.platform)}
+          value={stats.revenue}
+          total={totalStats.revenue}
+        />
       </div>
     </div>
   );
