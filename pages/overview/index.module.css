@@ -2,6 +2,11 @@
   display: flex;
   padding: 30px;
   flex: none;
+  z-index: 1;
+}
+
+.scrolled {
+  box-shadow: var(--shadow-1);
 }
 
 .pageTitle {
