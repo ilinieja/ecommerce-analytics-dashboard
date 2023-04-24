@@ -13,31 +13,38 @@ import {
   ChartDimension,
   breakdownStatsChartDimensionUpdated,
 } from "@/store/filters/filters.slice";
+import { fetchDayGeoBucketStats } from "@/store/dayGeoBucketStats/dayGeoBucketStats.slice";
+import { DayGeoBucketStats } from "@/api/services/geo-bucket-stats.service";
+import { dayGeoBucketStatsSelectors } from "@/store/dayGeoBucketStats/dayGeoBucketStats.selectors";
+import {
+  DEFAULT_COLOR,
+  getGeoBucketColor,
+  getGeoBucketOrder,
+  getPlatformColor,
+  getPlatformOrder,
+} from "@/shared/charts";
+import { getValuesSortedByField } from "@/shared/utils";
 
 import StackedBarChart, {
   StackedBarChartDataItem,
   StackedBarStackItem,
 } from "../StackedBarChart/StackedBarChart";
 import ChartLegend from "../ChartLegend/ChartLegend";
+import Select from "../Select/Select";
 
 import styles from "./BreakdownStatsChart.module.css";
-import Select from "../Select/Select";
-import { fetchDayGeoBucketStats } from "@/store/dayGeoBucketStats/dayGeoBucketStats.slice";
-import { DayGeoBucketStats } from "@/api/services/geo-bucket-stats.service";
-import { dayGeoBucketStatsSelectors } from "@/store/dayGeoBucketStats/dayGeoBucketStats.selectors";
+import logger from "@/shared/logger";
 
 export interface BreakdownStatsChartProps {
   className?: string;
 }
-
-const CHART_PALETTE = ["#343434", "#665191", "#dd8057", "#4875c3"];
 
 interface ChartDimensionConfig {
   title: string;
   fetchData: Function;
   getData: (state: RootState) => unknown;
   getValue: Function;
-  getDimension: Function;
+  getDimensionValue: Function;
   getIsLoadingSuccess: (state: RootState) => boolean;
 }
 
@@ -49,7 +56,7 @@ const DIMENSION_CONFIGS: Record<ChartDimension, ChartDimensionConfig> = {
     fetchData: fetchDayPlatformStats,
     getData: dayPlatformStatsSelectors.selectAll,
     getValue: ({ revenue }: DayPlatformStats) => revenue,
-    getDimension: ({ platform }: DayPlatformStats) => platform,
+    getDimensionValue: ({ platform }: DayPlatformStats) => platform,
     getIsLoadingSuccess: dayPlatformStatsSelectors.getIsLoadingSuccess,
   },
   orders_by_platform: {
@@ -57,7 +64,7 @@ const DIMENSION_CONFIGS: Record<ChartDimension, ChartDimensionConfig> = {
     fetchData: fetchDayPlatformStats,
     getData: dayPlatformStatsSelectors.selectAll,
     getValue: ({ orders }: DayPlatformStats) => orders,
-    getDimension: ({ platform }: DayPlatformStats) => platform,
+    getDimensionValue: ({ platform }: DayPlatformStats) => platform,
     getIsLoadingSuccess: dayPlatformStatsSelectors.getIsLoadingSuccess,
   },
   average_order_revenue_by_platform: {
@@ -66,7 +73,7 @@ const DIMENSION_CONFIGS: Record<ChartDimension, ChartDimensionConfig> = {
     getData: dayPlatformStatsSelectors.selectAll,
     getValue: ({ averageOrderRevenue }: DayPlatformStats) =>
       averageOrderRevenue,
-    getDimension: ({ platform }: DayPlatformStats) => platform,
+    getDimensionValue: ({ platform }: DayPlatformStats) => platform,
     getIsLoadingSuccess: dayPlatformStatsSelectors.getIsLoadingSuccess,
   },
   revenue_by_geo_bucket: {
@@ -74,7 +81,7 @@ const DIMENSION_CONFIGS: Record<ChartDimension, ChartDimensionConfig> = {
     fetchData: fetchDayGeoBucketStats,
     getData: dayGeoBucketStatsSelectors.selectAll,
     getValue: ({ revenue }: DayGeoBucketStats) => revenue,
-    getDimension: ({ geoBucket }: DayGeoBucketStats) => geoBucket,
+    getDimensionValue: ({ geoBucket }: DayGeoBucketStats) => geoBucket,
     getIsLoadingSuccess: dayGeoBucketStatsSelectors.getIsLoadingSuccess,
   },
   orders_by_geo_bucket: {
@@ -82,7 +89,7 @@ const DIMENSION_CONFIGS: Record<ChartDimension, ChartDimensionConfig> = {
     fetchData: fetchDayGeoBucketStats,
     getData: dayGeoBucketStatsSelectors.selectAll,
     getValue: ({ orders }: DayGeoBucketStats) => orders,
-    getDimension: ({ geoBucket }: DayGeoBucketStats) => geoBucket,
+    getDimensionValue: ({ geoBucket }: DayGeoBucketStats) => geoBucket,
     getIsLoadingSuccess: dayGeoBucketStatsSelectors.getIsLoadingSuccess,
   },
   average_order_revenue_by_geo_bucket: {
@@ -91,10 +98,46 @@ const DIMENSION_CONFIGS: Record<ChartDimension, ChartDimensionConfig> = {
     getData: dayGeoBucketStatsSelectors.selectAll,
     getValue: ({ averageOrderRevenue }: DayGeoBucketStats) =>
       averageOrderRevenue,
-    getDimension: ({ geoBucket }: DayGeoBucketStats) => geoBucket,
+    getDimensionValue: ({ geoBucket }: DayGeoBucketStats) => geoBucket,
     getIsLoadingSuccess: dayGeoBucketStatsSelectors.getIsLoadingSuccess,
   },
 };
+
+function isPlatformDimension(dimension: keyof typeof DIMENSION_CONFIGS) {
+  return dimension.includes("by_platform");
+}
+
+function isGeoBucketDimension(dimension: keyof typeof DIMENSION_CONFIGS) {
+  return dimension.includes("by_geo_bucket");
+}
+
+function getColor(dimension: keyof typeof DIMENSION_CONFIGS, value: string) {
+  if (isPlatformDimension(dimension)) {
+    return getPlatformColor(value);
+  }
+
+  if (isGeoBucketDimension(dimension)) {
+    return getGeoBucketColor(value);
+  }
+
+  logger.error(`[BreakdownStatsChart] Invalid dimension: ${dimension}`);
+
+  return DEFAULT_COLOR;
+}
+
+function getOrder(dimension: keyof typeof DIMENSION_CONFIGS, value: string) {
+  if (isPlatformDimension(dimension)) {
+    return getPlatformOrder(value);
+  }
+
+  if (isGeoBucketDimension(dimension)) {
+    return getGeoBucketOrder(value);
+  }
+
+  logger.error(`[BreakdownStatsChart] Invalid dimension: ${dimension}`);
+
+  return 0;
+}
 
 export default function BreakdownStatsChart({
   className,
@@ -123,20 +166,21 @@ export default function BreakdownStatsChart({
 
   for (let i = 0; i < data.length; i++) {
     const date = data[i].date;
-    const dimension = dimensionConfig.getDimension(data[i]);
+    const dimensionValue = dimensionConfig.getDimensionValue(data[i]);
     if (!values[date]) {
       values[date] = {
         title: format(new Date(date), "d MMM"),
-        stack: { [dimension]: dimensionConfig.getValue(data[i]) },
+        stack: { [dimensionValue]: dimensionConfig.getValue(data[i]) },
       };
     } else {
-      values[date].stack[dimension] = dimensionConfig.getValue(data[i]);
+      values[date].stack[dimensionValue] = dimensionConfig.getValue(data[i]);
     }
 
-    if (!stackConfig[dimension]) {
-      stackConfig[dimension] = {
-        title: dimension,
-        color: CHART_PALETTE[Object.keys(stackConfig).length],
+    if (!stackConfig[dimensionValue]) {
+      stackConfig[dimensionValue] = {
+        title: dimensionValue,
+        color: getColor(selectedDimension, dimensionValue),
+        order: getOrder(selectedDimension, dimensionValue),
       };
     }
   }
@@ -162,7 +206,7 @@ export default function BreakdownStatsChart({
         />
         <ChartLegend
           className={styles.rightAligned}
-          items={Object.values(stackConfig)}
+          items={getValuesSortedByField(stackConfig, "order")}
         />
       </div>
       <StackedBarChart className={styles.chart} data={chartData} />

@@ -4,6 +4,8 @@ import useResizeObserver from "use-resize-observer";
 import classNames from "classnames";
 import numeral from "numeral";
 
+import { getKeysSortedByField } from "@/shared/utils";
+
 import styles from "./StackedBarChart.module.css";
 
 export interface StackedBarChartData {
@@ -14,6 +16,7 @@ export interface StackedBarChartData {
 export interface StackedBarStackItem {
   title: string;
   color: string;
+  order?: number;
 }
 
 export interface StackedBarChartDataItem {
@@ -67,7 +70,9 @@ export default function StackedBarChart({
       ])
       .range([containerHeight - margin.top - margin.bottom, 0]);
 
-    const stackedData = d3.stack().keys(Object.keys(data.stackConfig))(
+    const stackedData = d3
+      .stack()
+      .keys(getKeysSortedByField(data.stackConfig, "order"))(
       Object.entries(data.values).map(([group, { stack }]) => ({
         _group: group as unknown as number,
         ...stack,
@@ -135,7 +140,7 @@ export default function StackedBarChart({
             (xScale(d.data._group as unknown as string) as number) + margin.left
         )
         .attr("y", (d) => yScale(d[1]) + margin.top)
-        .attr("height", (d) => yScale(d[0]) - yScale(d[1]))
+        .attr("height", (d) => yScale(d[0]) - yScale(d[1]) + 1) // +1 to prevent tiny horizontal gaps between stack segments.
         .attr("width", xScale.bandwidth())
         .attr("y", (d) => yScale(d[1]) + margin.top);
     }

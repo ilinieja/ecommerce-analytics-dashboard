@@ -60,6 +60,7 @@ export default function TopPlatformsList({ className }: TopPlatformListProps) {
         {totalStats &&
           topPlatformStats.map((platformStats) => (
             <TopPlatformsListItem
+              key={platformStats.platform}
               stats={platformStats}
               totalStats={totalStats}
             ></TopPlatformsListItem>
