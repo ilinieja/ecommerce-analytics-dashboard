@@ -6,13 +6,14 @@ import { AppDispatch } from "@/store/store";
 import { filtersSelectors } from "@/store/filters/filters.selectors";
 import { fetchTotalGeoBucketStats } from "@/store/totalGeoBucketStats/totalGeoBucketStats.slice";
 import { totalGeoBucketStatsSelectors } from "@/store/totalGeoBucketStats/totalGeoBucketStats.selectors";
+import { getValuesSortedByField } from "@/shared/utils";
+import { getGeoBucketColor, getGeoBucketOrder } from "@/shared/charts";
 import SvgCircleLoader from "@/icons/SvgDotsLoader";
 
-import styles from "./TopLocationsChart.module.css";
 import { DonutChart, DonutChartData } from "../DonutChart/DonutChart";
-import { getGeoBucketColor, getGeoBucketOrder } from "@/shared/charts";
 import ChartLegend from "../ChartLegend/ChartLegend";
-import { getValuesSortedByField } from "@/shared/utils";
+
+import styles from "./TopLocationsChart.module.css";
 
 export interface TopLocationsChartProps {
   className?: string;
