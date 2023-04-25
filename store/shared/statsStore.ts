@@ -27,7 +27,7 @@ export type EntityWithParams<T> = T & { _params: FetchStatsParams };
 
 export type DayStatsSliceState<T> = EntityState<T> & LoadingState;
 
-export interface GetDayStatsSliceParams<T, R> {
+export interface GetStatsStoreParams<T, R> {
   name: string;
   apiPath: string;
   getEntities: (response: R) => T[];
@@ -37,7 +37,7 @@ export interface GetDayStatsSliceParams<T, R> {
 export function createStatsStore<
   T extends Stats,
   R extends DayStatsResponse<T> | TotalStatsResponse<T>
->({ name, apiPath, getEntities, selectId }: GetDayStatsSliceParams<T, R>) {
+>({ name, apiPath, getEntities, selectId }: GetStatsStoreParams<T, R>) {
   const fetch = createAsyncThunk(
     `${name}/fetch`,
     async (params: FetchStatsParams) => {
@@ -71,7 +71,7 @@ export function createStatsStore<
         })
         .addCase(fetch.fulfilled, (state, { payload: { data, params } }) => {
           state.loadingStatus = LoadingStatus.success;
-          return adapter.upsertMany(
+          return adapter.setAll(
             state as DayStatsSliceState<EntityWithParams<T>>,
             getEntities(data).map((entity) => ({
               ...entity,

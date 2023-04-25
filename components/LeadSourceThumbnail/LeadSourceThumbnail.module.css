@@ -1,0 +1,11 @@
+.row {
+    white-space: nowrap;
+}
+
+.icon {
+    display: inline-block;
+    height: 1em;
+    vertical-align: middle;
+    margin-right: 6px;
+    position: relative;
+}

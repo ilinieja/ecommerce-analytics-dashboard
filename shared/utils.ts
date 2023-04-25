@@ -45,3 +45,10 @@ export function getValuesSortedByField<T>(
 ) {
   return getEntriesSortedByField(map, field).map(([_, value]) => value);
 }
+
+
+export function stringifyArrayWithLimit(array: string[], limit: number) {
+  return `${array.slice(0, limit).join(", ")} ${
+    array.length > limit ? `(+${array.length - limit})` : ""
+  }`;
+}

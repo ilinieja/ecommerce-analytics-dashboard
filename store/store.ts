@@ -22,9 +22,11 @@ import {
   totalGeoBucketStatsSlice,
   totalGeoBucketStatsSliceName,
 } from "./totalGeoBucketStats/totalGeoBucketStats.slice";
+import { ordersSlice } from "./orders/orders.slice";
 
 const rootReducer = combineReducers({
   filters: filtersSlice.reducer,
+  orders: ordersSlice.reducer,
 
   [totalStatsSliceName]: totalStatsSlice.reducer,
   [totalPlatformStatsSliceName]: totalPlatformStatsSlice.reducer,

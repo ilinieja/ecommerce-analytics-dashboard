@@ -1,0 +1,10 @@
+.icon {
+    display: inline-block;
+    height: 0.9em;
+    vertical-align: middle;
+    margin-right: 6px;
+    border-radius: 2px;
+    position: relative;
+    top: -2px;
+    opacity: 0.8;
+}

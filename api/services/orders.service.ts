@@ -6,6 +6,7 @@ import OrderModel, {
 } from "../models/order.model";
 
 export interface Order {
+  _id: string;
   customer: {
     fullName: string;
     email: string;
@@ -44,11 +45,10 @@ export class OrdersService {
     endDate: Date,
     limit: number
   ): Promise<Order[]> {
-    const orders = await OrderModel.find(
-      { date: { $gte: startDate, $lt: endDate } },
-      { projection: { _id: false } }
-    )
-      .sort({ date: 1 })
+    const orders = await OrderModel.find({
+      date: { $gte: startDate, $lt: endDate },
+    })
+      .sort({ date: -1 })
       .limit(limit)
       .exec();
 

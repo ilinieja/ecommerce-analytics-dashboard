@@ -1,0 +1,45 @@
+.row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.imageContainer {
+    flex: none;
+    width: 32px;
+    height: 32px;
+    position: relative;
+}
+
+.imagePlaceholder,
+.image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.imagePlaceholder {
+    z-index: 0;
+    background: var(--color-grey);
+}
+
+.image {
+    z-index: 1;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.subtitle {
+    font-size: 0.8rem;
+    color: var(--color-darker-grey);
+    white-space: nowrap;
+}

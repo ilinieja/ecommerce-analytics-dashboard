@@ -6,6 +6,7 @@ import styles from "./index.module.css";
 import BreakdownStatsChart from "@/components/BreakdownStatsChart/BreakdownStatsChart";
 import TopPlatformsList from "@/components/TopPlatformsList/TopPlatformsList";
 import { TopLocationsChart } from "@/components/TopLocationsChart/TopLocationsChart";
+import { OrdersTable } from "@/components/OrdersTable/OrdersTable";
 
 export default function Overview() {
   const [isContentScrolled, setIsContentScrolled] = useState(false);
@@ -29,6 +30,7 @@ export default function Overview() {
           <TopPlatformsList className={styles.sectionItem} />
           <TopLocationsChart className={styles.sectionItem} />
         </div>
+        <OrdersTable />
       </section>
     </>
   );
