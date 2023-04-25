@@ -31,10 +31,7 @@ function getEntriesSortedByField<T>(
  * Returns object keys sorted by value field.
  * Value field shoud be number or string.
  */
-export function getKeysSortedByField<T>(
-  map: Record<string | number | symbol, T>,
-  field: keyof T
-) {
+export function getKeysSortedByField<T>(map: Record<string, T>, field: keyof T) {
   return getEntriesSortedByField(map, field).map(([key]) => key);
 }
 
@@ -43,7 +40,7 @@ export function getKeysSortedByField<T>(
  * Value field shoud be number or string.
  */
 export function getValuesSortedByField<T>(
-  map: Record<string | number | symbol, T>,
+  map: Record<string, T>,
   field: keyof T
 ) {
   return getEntriesSortedByField(map, field).map(([_, value]) => value);
