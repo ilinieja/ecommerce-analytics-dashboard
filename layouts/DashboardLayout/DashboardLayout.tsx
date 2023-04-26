@@ -1,20 +1,39 @@
 import Image from "next/image";
 import Link from "next/link";
-import { PropsWithChildren, ReactElement } from "react";
+import { PropsWithChildren, ReactElement, useState } from "react";
 
-import styles from "./DashboardLayout.module.css";
 import { NavLink } from "@/components/NavLink/NavLink";
-
 import SvgHomeIcon from "@/icons/SvgHomeIcon";
 import SvgCartIcon from "@/icons/SvgCartIcon";
 import SvgBarchartIcon from "@/icons/SvgBarchartIcon";
 import SvgMapMarkerIcon from "@/icons/SvgMapMarkerIcon";
 import SvgDocumentIcon from "@/icons/SvgDocumentIcon";
 
+import styles from "./DashboardLayout.module.scss";
+import useResizeObserver from "use-resize-observer";
+import classNames from "classnames";
+
 export function DashboardLayout({ children }: PropsWithChildren) {
+  const [isMouseOverNav, setIsMouseOverNav] = useState(false);
+
+  const { ref, width = 0 } = useResizeObserver<HTMLDivElement>();
+  let layoutClass;
+  if (width >= 1440) {
+    layoutClass = styles.layoutWide;
+  }
+
   return (
-    <div className={styles.root}>
-      <nav className={styles.nav}>
+    <div
+      ref={ref}
+      className={classNames(styles.root, layoutClass, {
+        [styles.navHovered]: isMouseOverNav,
+      })}
+    >
+      <nav
+        className={classNames(styles.nav)}
+        onMouseEnter={() => setIsMouseOverNav(true)}
+        onMouseLeave={() => setIsMouseOverNav(false)}
+      >
         <Link href="/" className={styles.logo}>
           <Image src="/logo.svg" alt="Logo" height={42} width={42}></Image>
         </Link>
@@ -22,41 +41,46 @@ export function DashboardLayout({ children }: PropsWithChildren) {
         <div className={styles.navLinks}>
           <NavLink
             icon={<SvgHomeIcon />}
-            label="Overview"
             href="/overview"
             className={styles.navLink}
-          />
+          >
+            <span className={styles.navLinkText}>Overview</span>
+          </NavLink>
 
           <NavLink
             icon={<SvgDocumentIcon />}
-            label="Platforms"
             href="/platforms"
             className={styles.navLink}
-          />
+          >
+            <span className={styles.navLinkText}>Platforms</span>
+          </NavLink>
 
           <NavLink
             icon={<SvgMapMarkerIcon />}
-            label="Geography"
             href="/geography"
             className={styles.navLink}
-          />
+          >
+            <span className={styles.navLinkText}>Geography</span>
+          </NavLink>
 
           <NavLink
             icon={<SvgCartIcon />}
-            label="Orders"
             href="/orders"
             className={styles.navLink}
-          />
+          >
+            <span className={styles.navLinkText}>Orders</span>
+          </NavLink>
 
           <NavLink
             icon={<SvgBarchartIcon />}
-            label="Analytics"
             href="/analytics"
             className={styles.navLink}
-          />
+          >
+            <span className={styles.navLinkText}>Analytics</span>
+          </NavLink>
         </div>
       </nav>
-      <main className={styles.main}>{children}</main>
+      <main className={classNames(styles.main)}>{children}</main>
     </div>
   );
 }

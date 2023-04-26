@@ -16,12 +16,12 @@ export default function Overview() {
     setIsContentScrolled(event.currentTarget.scrollTop !== 0);
   };
 
-  const { ref, width } = useResizeObserver<HTMLDivElement>();
+  const { ref, width = 0 } = useResizeObserver<HTMLDivElement>();
   let layoutClass;
-  if (width && width > 820) {
+  if (width >= 820) {
     layoutClass = styles.layoutMedium;
   }
-  if (width && width > 1280) {
+  if (width >= 1200) {
     layoutClass = styles.layoutWide;
   }
 
