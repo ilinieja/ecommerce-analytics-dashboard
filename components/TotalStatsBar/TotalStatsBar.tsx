@@ -1,21 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect } from "react";
+import classNames from "classnames";
 
-import {
-  fetchTotalStats,
-  getTotalStatsId,
-} from "@/store/totalStats/totalStats.slice";
+import { fetchTotalStats } from "@/store/totalStats/totalStats.slice";
 import { fetchDayStats } from "@/store/dayStats/dayStats.slice";
-import { AppDispatch, RootState } from "@/store/store";
+import { AppDispatch } from "@/store/store";
 import { totalStatsSelectors } from "@/store/totalStats/totalStats.selectors";
-import SvgCircleLoader from "@/icons/SvgDotsLoader";
 import { dayStatsSelectors } from "@/store/dayStats/dayStats.selectors";
 import { filtersSelectors } from "@/store/filters/filters.selectors";
+import SvgCircleLoader from "@/icons/SvgDotsLoader";
 
 import TotalStat from "../TotalStat/TotalStat";
-import styles from "./TotalStatsBar.module.css";
+import styles from "./TotalStatsBar.module.scss";
 
-export default function TotalStatsBar() {
+export interface TotatStatsBarProps {
+  className?: string;
+}
+
+export default function TotalStatsBar({ className }: TotatStatsBarProps) {
   const dispatch = useDispatch<AppDispatch>();
   const isLoadingSuccess = useSelector(totalStatsSelectors.getIsLoadingSuccess);
 
@@ -42,7 +44,7 @@ export default function TotalStatsBar() {
   }, [startDate, endDate, dispatch]);
 
   return (
-    <div className={styles.card}>
+    <div className={classNames(className, styles.card)}>
       <TotalStat
         name="Revenue"
         totalValue={totalStats?.revenue}

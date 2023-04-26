@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@types/d3": "^7.4.0",
-    "@types/numeral": "^2.0.2"
+    "@types/numeral": "^2.0.2",
+    "sass": "^1.62.1"
   }
 }

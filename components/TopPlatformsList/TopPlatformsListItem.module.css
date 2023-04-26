@@ -21,6 +21,11 @@
     border-radius: 4px;
 }
 
+.title,
+.note {
+    white-space: nowrap;
+}
+
 .title {
     margin: 0;
     font-size: 1rem;

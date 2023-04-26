@@ -32,7 +32,7 @@ import StackedBarChart, {
 import ChartLegend from "../ChartLegend/ChartLegend";
 import Select from "../Select/Select";
 
-import styles from "./BreakdownStatsChart.module.css";
+import styles from "./BreakdownStatsChart.module.scss";
 import logger from "@/shared/logger";
 
 export interface BreakdownStatsChartProps {
@@ -196,7 +196,7 @@ export default function BreakdownStatsChart({
 
   return (
     <div className={classNames(styles.container, className)}>
-      <div className={styles.row}>
+      <div className={styles.header}>
         <Select
           items={Object.entries(DIMENSION_CONFIGS).map(
             ([value, { title }]) => ({ value, title })

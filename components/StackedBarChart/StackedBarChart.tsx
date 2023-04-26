@@ -33,7 +33,7 @@ export interface StackedBarChartProps {
 export default function StackedBarChart({
   className,
   data,
-  margin = { top: 10, right: 30, bottom: 50, left: 50 },
+  margin = { top: 10, right: 30, bottom: 30, left: 50 },
 }: StackedBarChartProps) {
   const svgRef = useRef(null);
   const {

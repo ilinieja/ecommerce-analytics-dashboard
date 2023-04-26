@@ -11,6 +11,7 @@
     margin: 0 0 4px;
     font-weight: 600;
     font-size: 1rem;
+    white-space: nowrap;
 }
 
 .bold {
