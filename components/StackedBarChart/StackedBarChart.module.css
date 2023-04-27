@@ -3,3 +3,14 @@
     width: 500px;
     height: 300px;
 }
+
+.tooltipBackground {
+    fill: var(--color-light);
+    rx: 2;
+    filter: drop-shadow(4px 4px 4px rgb(0 0 0 / 0.35));
+}
+
+.tooltipTitle,
+.tooltipValue {
+    font-weight: 600;
+}

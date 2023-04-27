@@ -117,6 +117,113 @@ export default function StackedBarChart({
       .attr("color", "#343434")
       .attr("font-size", "0.875rem");
 
+    const tooltip = svgEl.append("g").style("opacity", 0);
+
+    const mouseenter = function ({ target }: PointerEvent, d: any) {
+      const {
+        x: segmentX,
+        y: segmentY,
+        width: segmentWidth,
+      } = (target as SVGGraphicsElement)?.getBBox();
+
+      tooltip.attr("transform", "scale(1, 1)");
+      let translateX = segmentX + segmentWidth + 6;
+      let translateY = segmentY;
+      tooltip.attr("transform", `translate(${translateX}, ${translateY})`);
+
+      const background = tooltip
+        .append("rect")
+        .attr("class", styles.tooltipBackground);
+
+      const tooltipMargin = { top: 24, right: 16, bottom: 12, left: 16 };
+
+      const tooltipTitle = tooltip
+        .append("text")
+        .attr("class", styles.tooltipTitle)
+        .attr(
+          "transform",
+          `translate(${tooltipMargin.left}, ${tooltipMargin.top})`
+        )
+        .attr("dominant-baseline", "middle")
+        .text(data.values[d.data._group].title);
+
+      const tooltipTitleHeight =
+        tooltipTitle.node()?.getBoundingClientRect().height ?? 0;
+
+      const items: { item: any; value: string }[] = [];
+      getKeysSortedByField(data.stackConfig, "order")
+        .reverse()
+        .forEach((key, index) => {
+          const item = tooltip
+            .append("g")
+            .attr(
+              "transform",
+              `translate(${tooltipMargin.left}, ${
+                tooltipMargin.top + tooltipTitleHeight + 12 + 24 * index
+              })`
+            )
+            .attr("class", styles.tooltipItem);
+
+          const indicatorRadius = 5;
+          item
+            .append("circle")
+            .attr("r", indicatorRadius)
+            .attr("cx", indicatorRadius)
+            .attr("fill", data.stackConfig[key].color);
+          item
+            .append("text")
+            .attr("dominant-baseline", "middle")
+            .attr("transform", `translate(${indicatorRadius * 2 + 6}, 1)`)
+            .text(`${key}:`);
+
+          items.push({ item, value: numeral(d.data[key]).format("0.[0]a") });
+        });
+
+      const maxKeyWidth = d3.max(
+        items,
+        ({ item }) => item.node().getBoundingClientRect().width
+      );
+
+      items.forEach(({ item, value }) => {
+        item
+          .append("text")
+          .attr("dominant-baseline", "middle")
+          .attr(
+            "transform",
+            `translate(${tooltipMargin.left + maxKeyWidth + 24})`
+          )
+          .attr("class", styles.tooltipValue)
+          .text(value);
+      });
+
+      const { width: tooltipWidth = 0, height: tooltipHeight = 0 } =
+        tooltip.node()?.getBBox() ?? {};
+
+      background
+        .style("width", tooltipWidth + tooltipMargin.left + tooltipMargin.right)
+        .style("height", tooltipHeight + tooltipMargin.top);
+
+      const { width: tooltipBgWidth = 0, height: tooltipBgHeight = 0 } =
+        background.node()?.getBBox() ?? {};
+
+      if (translateX + tooltipBgWidth > containerWidth) {
+        translateX = segmentX - tooltipBgWidth - 6;
+      }
+      if (translateY + tooltipBgHeight > containerHeight - 6) {
+        translateY = containerHeight - tooltipBgHeight - 6;
+      }
+
+      tooltip.attr("transform", `translate(${translateX}, ${translateY})`);
+
+      tooltip.style("opacity", 1);
+    };
+
+    const mouseleave = function () {
+      tooltip.attr("transform", "scale(0, 1)");
+      tooltip.style("opacity", 0);
+      tooltip.selectAll("*").remove();
+    };
+
     // Chart
     // Draw bottom items using plain "rect" and then top items separately - they need rounded corners
     // and require "path" usage.
@@ -142,7 +249,9 @@ export default function StackedBarChart({
         .attr("y", (d) => yScale(d[1]) + margin.top)
         .attr("height", (d) => yScale(d[0]) - yScale(d[1]) + 1) // +1 to prevent tiny horizontal gaps between stack segments.
         .attr("width", xScale.bandwidth())
-        .attr("y", (d) => yScale(d[1]) + margin.top);
+        .attr("y", (d) => yScale(d[1]) + margin.top)
+        .on("mouseenter", mouseenter)
+        .on("mouseleave", mouseleave);
     }
 
     if (lastStackedDataItem) {
@@ -174,7 +283,9 @@ export default function StackedBarChart({
               z`;
 
           return path;
-        });
+        })
+        .on("mouseenter", mouseenter)
+        .on("mouseleave", mouseleave);
     }
   }, [containerHeight, containerWidth, data, margin]);
 

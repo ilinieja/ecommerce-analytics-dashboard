@@ -4,7 +4,7 @@ export function pluralize(count: number, noun: string, suffix = "s") {
 
 
 
-function getEntriesSortedByField<T>(
+export function getEntriesSortedByField<T>(
   map: Record<string | number | symbol, T>,
   field: keyof T
 ) {
