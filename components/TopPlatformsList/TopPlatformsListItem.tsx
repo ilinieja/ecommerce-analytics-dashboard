@@ -27,6 +27,7 @@ const PLATFORM_ICONS: { [platform in Platform]: ReactNode } = {
   [Platform.Allegro]: <SvgAllegroIcon />,
   [Platform.Ebay]: <SvgEbayIcon />,
   [Platform.Farfetch]: <SvgFarfetchIcon />,
+  [Platform.Other]: <SvgQuestionIcon />,
 };
 
 function getPlatformIcon(platform: Platform): ReactNode {
@@ -46,7 +47,7 @@ export default function TopPlatformListItem({
           <h3 className={styles.title}>{stats.platform}</h3>
           <span className={styles.note}>
             ${numeral(stats.revenue).format("0a")} Revenue |
-            {numeral(stats.orders).format("0.0a")}{" "}
+            {numeral(stats.orders).format("0.[0]a")}{" "}
             {pluralize(stats.orders, "Order")}
           </span>
         </div>

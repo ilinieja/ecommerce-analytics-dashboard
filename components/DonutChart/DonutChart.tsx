@@ -58,8 +58,8 @@ export function DonutChart({ data, className, margin = 0 }: DonutChartProps) {
 
     const dataArc: any = d3
       .arc()
-      .innerRadius(radius * 0.5)
-      .outerRadius(radius * 0.8);
+      .innerRadius(radius * 0.6)
+      .outerRadius(radius * 0.85);
     const labelsArc: any = d3.arc().innerRadius(radius).outerRadius(radius);
 
     chart
