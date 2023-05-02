@@ -27,7 +27,6 @@ const PLATFORM_ICONS: { [platform in Platform]: ReactNode } = {
   [Platform.Allegro]: <SvgAllegroIcon />,
   [Platform.Ebay]: <SvgEbayIcon />,
   [Platform.Farfetch]: <SvgFarfetchIcon />,
-  [Platform.Other]: <SvgQuestionIcon />,
 };
 
 function getPlatformIcon(platform: Platform): ReactNode {
