@@ -11,7 +11,7 @@ export const {
   fetch: fetchDayGeoBucketStats,
 } = createStatsStore<DayGeoBucketStats, DayGeoBucketStatsResponse>({
   name: dayGeoBucketStatsSliceName,
-  apiPath: "api/geo-bucket-stats/day",
+  apiPath: "/api/geo-bucket-stats/day",
   getEntities: (response) => response.dayStats,
   selectId: (entity) => `${entity.date}_${entity.geoBucket}`,
 });

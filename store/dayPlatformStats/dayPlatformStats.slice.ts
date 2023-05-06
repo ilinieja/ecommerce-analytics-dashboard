@@ -11,7 +11,7 @@ export const {
   fetch: fetchDayPlatformStats,
 } = createStatsStore<DayPlatformStats, DayPlatformStatsResponse>({
   name: dayPlatformStatsSliceName,
-  apiPath: "api/platform-stats/day",
+  apiPath: "/api/platform-stats/day",
   getEntities: (response) => response.dayStats,
   selectId: (entity) => `${entity.date}_${entity.platform}`,
 });

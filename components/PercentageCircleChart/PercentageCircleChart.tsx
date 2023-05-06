@@ -71,6 +71,7 @@ export function PercentageCircleChart({
     chart
       .append("text")
       .attr("class", styles.text)
+      .attr("data-testid", "PercentageCircleChart_text")
       .attr("fill", color)
       .attr("font-size", percentage.length > 3 ? "0.6rem" : "0.8rem")
       .attr(

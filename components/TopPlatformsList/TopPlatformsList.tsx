@@ -6,6 +6,7 @@ import classNames from "classnames";
 import { AppDispatch } from "@/store/store";
 import { filtersSelectors } from "@/store/filters/filters.selectors";
 import { fetchTotalPlatformStats } from "@/store/totalPlatformStats/totalPlatformStats.slice";
+import { fetchTotalStats } from "@/store/totalStats/totalStats.slice";
 import { totalPlatformStatsSelectors } from "@/store/totalPlatformStats/totalPlatformStats.selectors";
 import { totalStatsSelectors } from "@/store/totalStats/totalStats.selectors";
 import SvgCircleLoader from "@/icons/SvgDotsLoader";
@@ -49,6 +50,7 @@ export default function TopPlatformsList({ className }: TopPlatformListProps) {
 
   useEffect(() => {
     dispatch(fetchTotalPlatformStats({ startDate, endDate }));
+    dispatch(fetchTotalStats({ startDate, endDate }));
   }, [startDate, endDate, dispatch]);
 
   return (

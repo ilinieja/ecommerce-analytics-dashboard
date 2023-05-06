@@ -23,7 +23,7 @@ export const {
   fetch: fetchTotalPlatformStats,
 } = createStatsStore<TotalPlatformStats, TotalPlatformStatsResponse>({
   name: totalPlatformStatsSliceName,
-  apiPath: "api/platform-stats/total",
+  apiPath: "/api/platform-stats/total",
   getEntities: (response) => response.totalStats,
   selectId: (entity) =>
     getTotalPlatformStatsId(

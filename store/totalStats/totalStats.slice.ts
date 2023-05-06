@@ -14,7 +14,7 @@ export const {
   fetch: fetchTotalStats,
 } = createStatsStore<TotalStats, TotalStatsResponse>({
   name: totalStatsSliceName,
-  apiPath: "api/stats/total",
+  apiPath: "/api/stats/total",
   getEntities: (response) => response.totalStats,
   selectId: (entity) =>
     getTotalStatsId(entity._params.startDate, entity._params.endDate),

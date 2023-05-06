@@ -43,9 +43,11 @@ export default function TopPlatformListItem({
       <div className={styles.row}>
         <div className={styles.icon}>{getPlatformIcon(stats.platform)}</div>
         <div className={styles.column}>
-          <h3 className={styles.title}>{stats.platform}</h3>
-          <span className={styles.note}>
-            ${numeral(stats.revenue).format("0a")} Revenue |
+          <h3 className={styles.title} data-testid="TopPlatformsListItem_title">
+            {stats.platform}
+          </h3>
+          <span className={styles.note} data-testid="TopPlatformsListItem_note">
+            ${numeral(stats.revenue).format("0a")} Revenue |{" "}
             {numeral(stats.orders).format("0.[0]a")}{" "}
             {pluralize(stats.orders, "Order")}
           </span>

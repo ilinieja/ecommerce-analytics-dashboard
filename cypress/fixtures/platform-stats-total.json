@@ -1,0 +1,28 @@
+{
+  "totalStats": [
+    {
+      "revenue": 109666,
+      "orders": 420,
+      "averageOrderRevenue": 252.33071442066827,
+      "platform": "Allegro"
+    },
+    {
+      "revenue": 160337,
+      "orders": 555,
+      "averageOrderRevenue": 291.77623962195725,
+      "platform": "Farfetch"
+    },
+    {
+      "revenue": 142285,
+      "orders": 506,
+      "averageOrderRevenue": 276.4277009385613,
+      "platform": "Ebay"
+    },
+    {
+      "revenue": 121208,
+      "orders": 423,
+      "averageOrderRevenue": 277.79583452129253,
+      "platform": "Amazon"
+    }
+  ]
+}
