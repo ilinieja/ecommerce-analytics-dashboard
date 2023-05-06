@@ -194,8 +194,8 @@ function addTooltip({
       tooltip.node()?.getBBox() ?? {};
 
     background
-      .style("width", tooltipWidth + tooltipMargin.left + tooltipMargin.right)
-      .style("height", tooltipHeight + tooltipMargin.top);
+      .attr("width", tooltipWidth + tooltipMargin.left + tooltipMargin.right)
+      .attr("height", tooltipHeight + tooltipMargin.top);
 
     const { width: tooltipBgWidth = 0, height: tooltipBgHeight = 0 } =
       background.node()?.getBBox() ?? {};
