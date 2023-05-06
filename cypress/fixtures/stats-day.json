@@ -1,0 +1,88 @@
+{
+  "dayStats": [
+    {
+      "revenue": 58070,
+      "orders": 183,
+      "averageOrderRevenue": 317.3224043715847,
+      "date": "2023-02-15T00:00:00.000Z"
+    },
+    {
+      "revenue": 32430,
+      "orders": 112,
+      "averageOrderRevenue": 289.55357142857144,
+      "date": "2023-02-16T00:00:00.000Z"
+    },
+    {
+      "revenue": 55642,
+      "orders": 200,
+      "averageOrderRevenue": 278.21,
+      "date": "2023-02-17T00:00:00.000Z"
+    },
+    {
+      "revenue": 36873,
+      "orders": 134,
+      "averageOrderRevenue": 275.17164179104475,
+      "date": "2023-02-18T00:00:00.000Z"
+    },
+    {
+      "revenue": 37213,
+      "orders": 143,
+      "averageOrderRevenue": 260.2307692307692,
+      "date": "2023-02-19T00:00:00.000Z"
+    },
+    {
+      "revenue": 34321,
+      "orders": 120,
+      "averageOrderRevenue": 286.0083333333333,
+      "date": "2023-02-20T00:00:00.000Z"
+    },
+    {
+      "revenue": 30847,
+      "orders": 115,
+      "averageOrderRevenue": 268.23478260869564,
+      "date": "2023-02-21T00:00:00.000Z"
+    },
+    {
+      "revenue": 36600,
+      "orders": 140,
+      "averageOrderRevenue": 261.42857142857144,
+      "date": "2023-02-22T00:00:00.000Z"
+    },
+    {
+      "revenue": 44692,
+      "orders": 148,
+      "averageOrderRevenue": 301.97297297297297,
+      "date": "2023-02-23T00:00:00.000Z"
+    },
+    {
+      "revenue": 51323,
+      "orders": 173,
+      "averageOrderRevenue": 296.66473988439304,
+      "date": "2023-02-24T00:00:00.000Z"
+    },
+    {
+      "revenue": 38166,
+      "orders": 139,
+      "averageOrderRevenue": 274.57553956834533,
+      "date": "2023-02-25T00:00:00.000Z"
+    },
+    {
+      "revenue": 28673,
+      "orders": 128,
+      "averageOrderRevenue": 224.0078125,
+      "date": "2023-02-26T00:00:00.000Z"
+    },
+    {
+      "revenue": 50650,
+      "orders": 190,
+      "averageOrderRevenue": 266.57894736842104,
+      "date": "2023-02-27T00:00:00.000Z"
+    },
+    {
+      "revenue": 35485,
+      "orders": 121,
+      "averageOrderRevenue": 293.26446280991735,
+      "date": "2023-02-28T00:00:00.000Z"
+    }
+  ]
+}

@@ -42,6 +42,7 @@ export default function ValuesDiff({
           className
         )}
         title={longFormat}
+        data-testid="ValuesDiff_value"
       >
         {shortFormat}
       </span>

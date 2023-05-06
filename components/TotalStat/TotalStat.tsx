@@ -26,7 +26,7 @@ export default function TotalStat({
     <div className={styles.row}>
       <div className={styles.column}>
         <h2 className={styles.title}>{name}</h2>
-        <h3 className={styles.bold}>
+        <h3 className={styles.bold} data-testid="TotalStat_value">
           {numeral(totalValue).format(`${valuePrefix}${valueFormat}`)}
         </h3>
         {timelineData.length && (
