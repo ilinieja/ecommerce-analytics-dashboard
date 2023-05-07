@@ -13,6 +13,7 @@ import LocationThumbnail from "../LocationThumbnail/LocationThumbnail";
 import LeadSourceThumbnail from "../LeadSourceThumbnail/LeadSourceThumbnail";
 
 import styles from "./OrdersTable.module.scss";
+import SvgCircleLoader from "@/icons/SvgDotsLoader";
 
 export interface OrdersTableProps {
   className?: string;
@@ -22,6 +23,8 @@ export interface OrdersTableProps {
 export function OrdersTable({ className }: OrdersTableProps) {
   const dispatch = useDispatch<AppDispatch>();
   const { startDate, endDate } = useSelector(filtersSelectors.getDateRange);
+
+  const isLoadingSuccess = useSelector(ordersSelectors.getIsLoadingSuccess);
 
   useEffect(() => {
     dispatch(fetchOrders({ startDate, endDate, limit: 5 }));
@@ -67,15 +70,26 @@ export function OrdersTable({ className }: OrdersTableProps) {
               );
 
               return (
-                <tr className={styles.row}>
-                  <td className={styles.cell}>
+                <tr className={styles.row} data-testid="OrdersTable_row">
+                  <td
+                    className={styles.cell}
+                    data-testid="OrdersTable_cell_customer"
+                  >
                     <Thumbnail
                       title={order.customer.fullName}
                       subtitle={order.platform}
                     />
                   </td>
-                  <td className={styles.cell}>{itemsText}</td>
-                  <td className={styles.cell}>
+                  <td
+                    className={styles.cell}
+                    data-testid="OrdersTable_cell_items"
+                  >
+                    {itemsText}
+                  </td>
+                  <td
+                    className={styles.cell}
+                    data-testid="OrdersTable_cell_location"
+                  >
                     <LocationThumbnail
                       countryCode={order.geoLocation.countryCode}
                       country={order.geoLocation.country}
@@ -87,6 +101,7 @@ export function OrdersTable({ className }: OrdersTableProps) {
                       styles.cell,
                       styles.extraPaddingRight
                     )}
+                    data-testid="OrdersTable_cell_lead"
                   >
                     <LeadSourceThumbnail leadSource={order.leadSource} />
                   </td>
@@ -96,6 +111,7 @@ export function OrdersTable({ className }: OrdersTableProps) {
                       styles.rightAligned,
                       styles.bold
                     )}
+                    data-testid="OrdersTable_cell_value"
                   >
                     {numeral(orderValue).format("$0.[0]a")}
                   </td>
@@ -105,6 +121,11 @@ export function OrdersTable({ className }: OrdersTableProps) {
           </tbody>
         </table>
       </div>
+      {!isLoadingSuccess && (
+        <div className={styles.loadingOverlay}>
+          <SvgCircleLoader className={styles.loadingIndicator} />
+        </div>
+      )}
     </div>
   );
 }

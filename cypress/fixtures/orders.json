@@ -1,0 +1,324 @@
+{
+  "orders": [
+    {
+      "customer": {
+        "fullName": "Dan Bode",
+        "email": "Lela.Bins26@hotmail.com"
+      },
+      "geoLocation": {
+        "countryCode": "IT",
+        "country": "Gambia",
+        "state": "Bedfordshire",
+        "city": "Fort Annalise",
+        "addressLine1": "410 Jerrold Isle",
+        "addressLine2": "Apt. 623",
+        "postcode": "19586-8952",
+        "lat": 11.1051,
+        "lon": 10.3938,
+        "bucket": "Other"
+      },
+      "_id": "6456d2b6c2d8dd1e5c3222d9",
+      "platform": "Ebay",
+      "items": [
+        {
+          "item": {
+            "name": "Intelligent Soft Bacon",
+            "price": 15
+          },
+          "quantity": 8,
+          "_id": "6456d2b6c2d8dd1e5c3222da"
+        },
+        {
+          "item": {
+            "name": "Generic Concrete Ball",
+            "price": 73
+          },
+          "quantity": 3,
+          "_id": "6456d2b6c2d8dd1e5c3222db"
+        },
+        {
+          "item": {
+            "name": "Intelligent Steel Computer",
+            "price": 59
+          },
+          "quantity": 9,
+          "_id": "6456d2b6c2d8dd1e5c3222dc"
+        },
+        {
+          "item": {
+            "name": "Luxurious Concrete Hat",
+            "price": 56
+          },
+          "quantity": 5,
+          "_id": "6456d2b6c2d8dd1e5c3222dd"
+        }
+      ],
+      "leadSource": "Instagram",
+      "date": "2023-02-28T23:39:05.058Z"
+    },
+    {
+      "customer": {
+        "fullName": "Javier Leuschke",
+        "email": "Paris.Armstrong51@yahoo.com"
+      },
+      "geoLocation": {
+        "countryCode": "MD",
+        "country": "Guinea",
+        "state": "Cambridgeshire",
+        "city": "Aricberg",
+        "addressLine1": "5241 Delia Shore",
+        "addressLine2": "Suite 414",
+        "postcode": "59360-6385",
+        "lat": -1.433,
+        "lon": 151.1471,
+        "bucket": "Asia"
+      },
+      "_id": "6456d2b5c2d8dd1e5c31ede2",
+      "platform": "Allegro",
+      "items": [
+        {
+          "item": {
+            "name": "Handcrafted Steel Shoes",
+            "price": 85
+          },
+          "quantity": 8,
+          "_id": "6456d2b5c2d8dd1e5c31ede3"
+        },
+        {
+          "item": {
+            "name": "Handmade Bronze Hat",
+            "price": 16
+          },
+          "quantity": 2,
+          "_id": "6456d2b5c2d8dd1e5c31ede4"
+        },
+        {
+          "item": {
+            "name": "Modern Steel Ball",
+            "price": 16
+          },
+          "quantity": 3,
+          "_id": "6456d2b5c2d8dd1e5c31ede5"
+        },
+        {
+          "item": {
+            "name": "Handmade Cotton Sausages",
+            "price": 84
+          },
+          "quantity": 6,
+          "_id": "6456d2b5c2d8dd1e5c31ede6"
+        },
+        {
+          "item": {
+            "name": "Modern Bronze Soap",
+            "price": 76
+          },
+          "quantity": 2,
+          "_id": "6456d2b5c2d8dd1e5c31ede7"
+        }
+      ],
+      "leadSource": "Facebook",
+      "date": "2023-02-28T22:55:31.882Z"
+    },
+    {
+      "customer": {
+        "fullName": "Yvette Bosco",
+        "email": "Francesca.Medhurst63@hotmail.com"
+      },
+      "geoLocation": {
+        "countryCode": "NZ",
+        "country": "Finland",
+        "state": "Berkshire",
+        "city": "Jadeborough",
+        "addressLine1": "272 Quigley Route",
+        "addressLine2": "Apt. 452",
+        "postcode": "56620-9081",
+        "lat": 51.7125,
+        "lon": 122.131,
+        "bucket": "Americas"
+      },
+      "_id": "6456d2b4c2d8dd1e5c31c720",
+      "platform": "Ebay",
+      "items": [
+        {
+          "item": {
+            "name": "Electronic Bronze Chicken",
+            "price": 8
+          },
+          "quantity": 3,
+          "_id": "6456d2b4c2d8dd1e5c31c721"
+        },
+        {
+          "item": {
+            "name": "Electronic Cotton Pizza",
+            "price": 1
+          },
+          "quantity": 7,
+          "_id": "6456d2b4c2d8dd1e5c31c722"
+        },
+        {
+          "item": {
+            "name": "Ergonomic Granite Towels",
+            "price": 8
+          },
+          "quantity": 8,
+          "_id": "6456d2b4c2d8dd1e5c31c723"
+        }
+      ],
+      "leadSource": "Instagram",
+      "date": "2023-02-28T22:15:19.800Z"
+    },
+    {
+      "customer": {
+        "fullName": "Sharon Hoppe DVM",
+        "email": "Thalia35@yahoo.com"
+      },
+      "geoLocation": {
+        "countryCode": "AX",
+        "country": "Kazakhstan",
+        "state": "Berkshire",
+        "city": "Boyerchester",
+        "addressLine1": "496 Hickle Club",
+        "addressLine2": "Apt. 731",
+        "postcode": "12788-8432",
+        "lat": 30.2271,
+        "lon": -131.0666,
+        "bucket": "Asia"
+      },
+      "_id": "6456d2b3c2d8dd1e5c316bd8",
+      "platform": "Allegro",
+      "items": [
+        {
+          "item": {
+            "name": "Intelligent Metal Salad",
+            "price": 60
+          },
+          "quantity": 10,
+          "_id": "6456d2b3c2d8dd1e5c316bd9"
+        },
+        {
+          "item": {
+            "name": "Tasty Bronze Computer",
+            "price": 81
+          },
+          "quantity": 5,
+          "_id": "6456d2b3c2d8dd1e5c316bda"
+        },
+        {
+          "item": {
+            "name": "Unbranded Bronze Chicken",
+            "price": 37
+          },
+          "quantity": 6,
+          "_id": "6456d2b3c2d8dd1e5c316bdb"
+        },
+        {
+          "item": {
+            "name": "Elegant Cotton Towels",
+            "price": 98
+          },
+          "quantity": 5,
+          "_id": "6456d2b3c2d8dd1e5c316bdc"
+        },
+        {
+          "item": {
+            "name": "Small Plastic Shirt",
+            "price": 99
+          },
+          "quantity": 8,
+          "_id": "6456d2b3c2d8dd1e5c316bdd"
+        },
+        {
+          "item": {
+            "name": "Sleek Steel Pants",
+            "price": 48
+          },
+          "quantity": 9,
+          "_id": "6456d2b3c2d8dd1e5c316bde"
+        },
+        {
+          "item": {
+            "name": "Ergonomic Rubber Chair",
+            "price": 56
+          },
+          "quantity": 4,
+          "_id": "6456d2b3c2d8dd1e5c316bdf"
+        }
+      ],
+      "leadSource": "GoogleAds",
+      "date": "2023-02-28T21:56:45.878Z"
+    },
+    {
+      "customer": {
+        "fullName": "Dallas Kris",
+        "email": "Albert61@hotmail.com"
+      },
+      "geoLocation": {
+        "countryCode": "AD",
+        "country": "Saint Martin",
+        "state": "Bedfordshire",
+        "city": "Odaside",
+        "addressLine1": "7938 Jon Corner",
+        "addressLine2": "Apt. 197",
+        "postcode": "01765",
+        "lat": 83.0556,
+        "lon": 20.2864,
+        "bucket": "Asia"
+      },
+      "_id": "6456d2b6c2d8dd1e5c3214ba",
+      "platform": "Allegro",
+      "items": [
+        {
+          "item": {
+            "name": "Unbranded Bronze Ball",
+            "price": 56
+          },
+          "quantity": 6,
+          "_id": "6456d2b6c2d8dd1e5c3214bb"
+        },
+        {
+          "item": {
+            "name": "Elegant Plastic Computer",
+            "price": 69
+          },
+          "quantity": 1,
+          "_id": "6456d2b6c2d8dd1e5c3214bc"
+        },
+        {
+          "item": {
+            "name": "Oriental Steel Chair",
+            "price": 27
+          },
+          "quantity": 7,
+          "_id": "6456d2b6c2d8dd1e5c3214bd"
+        },
+        {
+          "item": {
+            "name": "Gorgeous Frozen Chips",
+            "price": 47
+          },
+          "quantity": 8,
+          "_id": "6456d2b6c2d8dd1e5c3214be"
+        },
+        {
+          "item": {
+            "name": "Small Metal Keyboard",
+            "price": 60
+          },
+          "quantity": 8,
+          "_id": "6456d2b6c2d8dd1e5c3214bf"
+        },
+        {
+          "item": {
+            "name": "Recycled Cotton Pants",
+            "price": 70
+          },
+          "quantity": 10,
+          "_id": "6456d2b6c2d8dd1e5c3214c0"
+        }
+      ],
+      "leadSource": "Email",
+      "date": "2023-02-28T21:49:21.965Z"
+    }
+  ]
+}
