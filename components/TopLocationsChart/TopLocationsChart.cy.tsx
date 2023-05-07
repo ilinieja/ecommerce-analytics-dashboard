@@ -1,6 +1,6 @@
 import React from "react";
 import { TopLocationsChart } from "./TopLocationsChart";
-import { TestStoreProvider } from "@/testing/utils";
+import { ComponentTestWrapper } from "@/testing/utils";
 
 describe("<TopLocationsChart />", () => {
   beforeEach(() => {
@@ -9,9 +9,9 @@ describe("<TopLocationsChart />", () => {
     }).as("getTotalGeoBucketStats");
 
     cy.mount(
-      <TestStoreProvider>
+      <ComponentTestWrapper>
         <TopLocationsChart />
-      </TestStoreProvider>
+      </ComponentTestWrapper>
     );
     cy.wait(["@getTotalGeoBucketStats"]);
   });

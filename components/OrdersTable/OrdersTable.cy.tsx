@@ -1,6 +1,6 @@
 import React from "react";
 
-import { TestStoreProvider } from "@/testing/utils";
+import { ComponentTestWrapper } from "@/testing/utils";
 
 import { OrdersTable } from "./OrdersTable";
 
@@ -11,9 +11,9 @@ describe("<OrdersTable />", () => {
     }).as("getOrders");
 
     cy.mount(
-      <TestStoreProvider>
+      <ComponentTestWrapper>
         <OrdersTable />
-      </TestStoreProvider>
+      </ComponentTestWrapper>
     );
     cy.wait(["@getOrders"]);
   });

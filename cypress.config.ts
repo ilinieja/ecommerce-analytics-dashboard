@@ -6,6 +6,7 @@ export default defineConfig({
       framework: "next",
       bundler: "webpack",
     },
+    snapshotFileName: "cypress/snapshots.js",
   },
 
   e2e: {

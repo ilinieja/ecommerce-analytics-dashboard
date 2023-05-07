@@ -36,9 +36,11 @@ export default function Overview() {
       </header>
       <section className={styles.pageContent} onScroll={handleContentScroll}>
         <div className={styles.grid}>
-          <div className={classNames(styles.main, styles.grow)}>
+          <div className={styles.main}>
             <TotalStatsBar className={styles.shrinkable} />
-            <BreakdownStatsChart className={styles.shrinkable} />
+            <BreakdownStatsChart
+              className={classNames(styles.shrinkable, styles.autoHeight)}
+            />
           </div>
           <div className={styles.cards}>
             <TopPlatformsList />

@@ -1,0 +1,396 @@
+{
+  "dayStats": [
+    {
+      "revenue": 23120,
+      "orders": 72,
+      "averageOrderRevenue": 321.1111111111111,
+      "date": "2023-02-15T00:00:00.000Z",
+      "geoBucket": "Other"
+    },
+    {
+      "revenue": 8222,
+      "orders": 23,
+      "averageOrderRevenue": 357.4782608695652,
+      "date": "2023-02-15T00:00:00.000Z",
+      "geoBucket": "Europe"
+    },
+    {
+      "revenue": 12429,
+      "orders": 42,
+      "averageOrderRevenue": 295.92857142857144,
+      "date": "2023-02-15T00:00:00.000Z",
+      "geoBucket": "Asia"
+    },
+    {
+      "revenue": 14299,
+      "orders": 46,
+      "averageOrderRevenue": 310.8478260869565,
+      "date": "2023-02-15T00:00:00.000Z",
+      "geoBucket": "Americas"
+    },
+    {
+      "revenue": 5079,
+      "orders": 19,
+      "averageOrderRevenue": 267.3157894736842,
+      "date": "2023-02-16T00:00:00.000Z",
+      "geoBucket": "Americas"
+    },
+    {
+      "revenue": 3415,
+      "orders": 17,
+      "averageOrderRevenue": 200.88235294117646,
+      "date": "2023-02-16T00:00:00.000Z",
+      "geoBucket": "Asia"
+    },
+    {
+      "revenue": 10356,
+      "orders": 34,
+      "averageOrderRevenue": 304.5882352941176,
+      "date": "2023-02-16T00:00:00.000Z",
+      "geoBucket": "Other"
+    },
+    {
+      "revenue": 13580,
+      "orders": 42,
+      "averageOrderRevenue": 323.3333333333333,
+      "date": "2023-02-16T00:00:00.000Z",
+      "geoBucket": "Europe"
+    },
+    {
+      "revenue": 15508,
+      "orders": 50,
+      "averageOrderRevenue": 310.16,
+      "date": "2023-02-17T00:00:00.000Z",
+      "geoBucket": "Europe"
+    },
+    {
+      "revenue": 9538,
+      "orders": 32,
+      "averageOrderRevenue": 298.0625,
+      "date": "2023-02-17T00:00:00.000Z",
+      "geoBucket": "Other"
+    },
+    {
+      "revenue": 19399,
+      "orders": 73,
+      "averageOrderRevenue": 265.73972602739724,
+      "date": "2023-02-17T00:00:00.000Z",
+      "geoBucket": "Americas"
+    },
+    {
+      "revenue": 11197,
+      "orders": 45,
+      "averageOrderRevenue": 248.82222222222222,
+      "date": "2023-02-17T00:00:00.000Z",
+      "geoBucket": "Asia"
+    },
+    {
+      "revenue": 10686,
+      "orders": 42,
+      "averageOrderRevenue": 254.42857142857142,
+      "date": "2023-02-18T00:00:00.000Z",
+      "geoBucket": "Europe"
+    },
+    {
+      "revenue": 8845,
+      "orders": 29,
+      "averageOrderRevenue": 305,
+      "date": "2023-02-18T00:00:00.000Z",
+      "geoBucket": "Asia"
+    },
+    {
+      "revenue": 10793,
+      "orders": 36,
+      "averageOrderRevenue": 299.80555555555554,
+      "date": "2023-02-18T00:00:00.000Z",
+      "geoBucket": "Americas"
+    },
+    {
+      "revenue": 6549,
+      "orders": 27,
+      "averageOrderRevenue": 242.55555555555554,
+      "date": "2023-02-18T00:00:00.000Z",
+      "geoBucket": "Other"
+    },
+    {
+      "revenue": 8831,
+      "orders": 32,
+      "averageOrderRevenue": 275.96875,
+      "date": "2023-02-19T00:00:00.000Z",
+      "geoBucket": "Other"
+    },
+    {
+      "revenue": 8958,
+      "orders": 36,
+      "averageOrderRevenue": 248.83333333333334,
+      "date": "2023-02-19T00:00:00.000Z",
+      "geoBucket": "Americas"
+    },
+    {
+      "revenue": 7338,
+      "orders": 31,
+      "averageOrderRevenue": 236.70967741935485,
+      "date": "2023-02-19T00:00:00.000Z",
+      "geoBucket": "Asia"
+    },
+    {
+      "revenue": 12086,
+      "orders": 44,
+      "averageOrderRevenue": 274.6818181818182,
+      "date": "2023-02-19T00:00:00.000Z",
+      "geoBucket": "Europe"
+    },
+    {
+      "revenue": 12101,
+      "orders": 42,
+      "averageOrderRevenue": 288.1190476190476,
+      "date": "2023-02-20T00:00:00.000Z",
+      "geoBucket": "Americas"
+    },
+    {
+      "revenue": 5776,
+      "orders": 22,
+      "averageOrderRevenue": 262.54545454545456,
+      "date": "2023-02-20T00:00:00.000Z",
+      "geoBucket": "Other"
+    },
+    {
+      "revenue": 12968,
+      "orders": 45,
+      "averageOrderRevenue": 288.1777777777778,
+      "date": "2023-02-20T00:00:00.000Z",
+      "geoBucket": "Europe"
+    },
+    {
+      "revenue": 3476,
+      "orders": 11,
+      "averageOrderRevenue": 316,
+      "date": "2023-02-20T00:00:00.000Z",
+      "geoBucket": "Asia"
+    },
+    {
+      "revenue": 9421,
+      "orders": 32,
+      "averageOrderRevenue": 294.40625,
+      "date": "2023-02-21T00:00:00.000Z",
+      "geoBucket": "Europe"
+    },
+    {
+      "revenue": 6848,
+      "orders": 27,
+      "averageOrderRevenue": 253.62962962962962,
+      "date": "2023-02-21T00:00:00.000Z",
+      "geoBucket": "Americas"
+    },
+    {
+      "revenue": 5107,
+      "orders": 20,
+      "averageOrderRevenue": 255.35,
+      "date": "2023-02-21T00:00:00.000Z",
+      "geoBucket": "Other"
+    },
+    {
+      "revenue": 9471,
+      "orders": 36,
+      "averageOrderRevenue": 263.0833333333333,
+      "date": "2023-02-21T00:00:00.000Z",
+      "geoBucket": "Asia"
+    },
+    {
+      "revenue": 3702,
+      "orders": 16,
+      "averageOrderRevenue": 231.375,
+      "date": "2023-02-22T00:00:00.000Z",
+      "geoBucket": "Europe"
+    },
+    {
+      "revenue": 16007,
+      "orders": 56,
+      "averageOrderRevenue": 285.8392857142857,
+      "date": "2023-02-22T00:00:00.000Z",
+      "geoBucket": "Americas"
+    },
+    {
+      "revenue": 9237,
+      "orders": 38,
+      "averageOrderRevenue": 243.07894736842104,
+      "date": "2023-02-22T00:00:00.000Z",
+      "geoBucket": "Other"
+    },
+    {
+      "revenue": 7654,
+      "orders": 30,
+      "averageOrderRevenue": 255.13333333333333,
+      "date": "2023-02-22T00:00:00.000Z",
+      "geoBucket": "Asia"
+    },
+    {
+      "revenue": 3674,
+      "orders": 11,
+      "averageOrderRevenue": 334,
+      "date": "2023-02-23T00:00:00.000Z",
+      "geoBucket": "Other"
+    },
+    {
+      "revenue": 21447,
+      "orders": 69,
+      "averageOrderRevenue": 310.82608695652175,
+      "date": "2023-02-23T00:00:00.000Z",
+      "geoBucket": "Europe"
+    },
+    {
+      "revenue": 4984,
+      "orders": 19,
+      "averageOrderRevenue": 262.3157894736842,
+      "date": "2023-02-23T00:00:00.000Z",
+      "geoBucket": "Asia"
+    },
+    {
+      "revenue": 14587,
+      "orders": 49,
+      "averageOrderRevenue": 297.6938775510204,
+      "date": "2023-02-23T00:00:00.000Z",
+      "geoBucket": "Americas"
+    },
+    {
+      "revenue": 17609,
+      "orders": 60,
+      "averageOrderRevenue": 293.48333333333335,
+      "date": "2023-02-24T00:00:00.000Z",
+      "geoBucket": "Americas"
+    },
+    {
+      "revenue": 18205,
+      "orders": 58,
+      "averageOrderRevenue": 313.87931034482756,
+      "date": "2023-02-24T00:00:00.000Z",
+      "geoBucket": "Asia"
+    },
+    {
+      "revenue": 11454,
+      "orders": 37,
+      "averageOrderRevenue": 309.56756756756755,
+      "date": "2023-02-24T00:00:00.000Z",
+      "geoBucket": "Europe"
+    },
+    {
+      "revenue": 4055,
+      "orders": 18,
+      "averageOrderRevenue": 225.27777777777777,
+      "date": "2023-02-24T00:00:00.000Z",
+      "geoBucket": "Other"
+    },
+    {
+      "revenue": 9663,
+      "orders": 32,
+      "averageOrderRevenue": 301.96875,
+      "date": "2023-02-25T00:00:00.000Z",
+      "geoBucket": "Europe"
+    },
+    {
+      "revenue": 7718,
+      "orders": 34,
+      "averageOrderRevenue": 227,
+      "date": "2023-02-25T00:00:00.000Z",
+      "geoBucket": "Other"
+    },
+    {
+      "revenue": 8516,
+      "orders": 25,
+      "averageOrderRevenue": 340.64,
+      "date": "2023-02-25T00:00:00.000Z",
+      "geoBucket": "Americas"
+    },
+    {
+      "revenue": 12269,
+      "orders": 48,
+      "averageOrderRevenue": 255.60416666666666,
+      "date": "2023-02-25T00:00:00.000Z",
+      "geoBucket": "Asia"
+    },
+    {
+      "revenue": 3583,
+      "orders": 17,
+      "averageOrderRevenue": 210.76470588235293,
+      "date": "2023-02-26T00:00:00.000Z",
+      "geoBucket": "Americas"
+    },
+    {
+      "revenue": 6539,
+      "orders": 31,
+      "averageOrderRevenue": 210.93548387096774,
+      "date": "2023-02-26T00:00:00.000Z",
+      "geoBucket": "Asia"
+    },
+    {
+      "revenue": 7080,
+      "orders": 32,
+      "averageOrderRevenue": 221.25,
+      "date": "2023-02-26T00:00:00.000Z",
+      "geoBucket": "Europe"
+    },
+    {
+      "revenue": 11471,
+      "orders": 48,
+      "averageOrderRevenue": 238.97916666666666,
+      "date": "2023-02-26T00:00:00.000Z",
+      "geoBucket": "Other"
+    },
+    {
+      "revenue": 15948,
+      "orders": 53,
+      "averageOrderRevenue": 300.9056603773585,
+      "date": "2023-02-27T00:00:00.000Z",
+      "geoBucket": "Asia"
+    },
+    {
+      "revenue": 9005,
+      "orders": 39,
+      "averageOrderRevenue": 230.89743589743588,
+      "date": "2023-02-27T00:00:00.000Z",
+      "geoBucket": "Europe"
+    },
+    {
+      "revenue": 14874,
+      "orders": 50,
+      "averageOrderRevenue": 297.48,
+      "date": "2023-02-27T00:00:00.000Z",
+      "geoBucket": "Other"
+    },
+    {
+      "revenue": 10823,
+      "orders": 48,
+      "averageOrderRevenue": 225.47916666666666,
+      "date": "2023-02-27T00:00:00.000Z",
+      "geoBucket": "Americas"
+    },
+    {
+      "revenue": 6605,
+      "orders": 26,
+      "averageOrderRevenue": 254.03846153846155,
+      "date": "2023-02-28T00:00:00.000Z",
+      "geoBucket": "Europe"
+    },
+    {
+      "revenue": 10551,
+      "orders": 38,
+      "averageOrderRevenue": 277.6578947368421,
+      "date": "2023-02-28T00:00:00.000Z",
+      "geoBucket": "Americas"
+    },
+    {
+      "revenue": 10813,
+      "orders": 30,
+      "averageOrderRevenue": 360.43333333333334,
+      "date": "2023-02-28T00:00:00.000Z",
+      "geoBucket": "Asia"
+    },
+    {
+      "revenue": 7516,
+      "orders": 27,
+      "averageOrderRevenue": 278.3703703703704,
+      "date": "2023-02-28T00:00:00.000Z",
+      "geoBucket": "Other"
+    }
+  ]
+}

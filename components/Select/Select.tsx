@@ -34,6 +34,7 @@ export default function Select({
           [styles.buttonOpen]: isDropdownOpen,
         })}
         onClick={() => setIsDropdownOpen(() => !isDropdownOpen)}
+        data-testid="Select_trigger"
       >
         <span>{selectedItem?.title || placeholder}</span>
         <SvgChevronIcon className={styles.buttonIcon} />
@@ -46,6 +47,7 @@ export default function Select({
               className={styles.item}
               onClick={() => handleItemClick(value)}
               key={value}
+              data-testid="Select_item"
             >
               {title}
             </li>

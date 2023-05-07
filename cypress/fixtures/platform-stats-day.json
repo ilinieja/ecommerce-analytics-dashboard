@@ -1,0 +1,396 @@
+{
+  "dayStats": [
+    {
+      "revenue": 9156,
+      "orders": 31,
+      "averageOrderRevenue": 295.35483870967744,
+      "date": "2023-02-15T00:00:00.000Z",
+      "platform": "Allegro"
+    },
+    {
+      "revenue": 8246,
+      "orders": 35,
+      "averageOrderRevenue": 235.6,
+      "date": "2023-02-15T00:00:00.000Z",
+      "platform": "Amazon"
+    },
+    {
+      "revenue": 25002,
+      "orders": 70,
+      "averageOrderRevenue": 357.1714285714286,
+      "date": "2023-02-15T00:00:00.000Z",
+      "platform": "Farfetch"
+    },
+    {
+      "revenue": 15666,
+      "orders": 47,
+      "averageOrderRevenue": 333.3191489361702,
+      "date": "2023-02-15T00:00:00.000Z",
+      "platform": "Ebay"
+    },
+    {
+      "revenue": 6314,
+      "orders": 21,
+      "averageOrderRevenue": 300.6666666666667,
+      "date": "2023-02-16T00:00:00.000Z",
+      "platform": "Farfetch"
+    },
+    {
+      "revenue": 7604,
+      "orders": 25,
+      "averageOrderRevenue": 304.16,
+      "date": "2023-02-16T00:00:00.000Z",
+      "platform": "Allegro"
+    },
+    {
+      "revenue": 9101,
+      "orders": 32,
+      "averageOrderRevenue": 284.40625,
+      "date": "2023-02-16T00:00:00.000Z",
+      "platform": "Amazon"
+    },
+    {
+      "revenue": 9411,
+      "orders": 34,
+      "averageOrderRevenue": 276.79411764705884,
+      "date": "2023-02-16T00:00:00.000Z",
+      "platform": "Ebay"
+    },
+    {
+      "revenue": 11090,
+      "orders": 47,
+      "averageOrderRevenue": 235.95744680851064,
+      "date": "2023-02-17T00:00:00.000Z",
+      "platform": "Ebay"
+    },
+    {
+      "revenue": 25447,
+      "orders": 75,
+      "averageOrderRevenue": 339.29333333333335,
+      "date": "2023-02-17T00:00:00.000Z",
+      "platform": "Farfetch"
+    },
+    {
+      "revenue": 9858,
+      "orders": 40,
+      "averageOrderRevenue": 246.45,
+      "date": "2023-02-17T00:00:00.000Z",
+      "platform": "Amazon"
+    },
+    {
+      "revenue": 9247,
+      "orders": 38,
+      "averageOrderRevenue": 243.3421052631579,
+      "date": "2023-02-17T00:00:00.000Z",
+      "platform": "Allegro"
+    },
+    {
+      "revenue": 6491,
+      "orders": 22,
+      "averageOrderRevenue": 295.04545454545456,
+      "date": "2023-02-18T00:00:00.000Z",
+      "platform": "Amazon"
+    },
+    {
+      "revenue": 8128,
+      "orders": 26,
+      "averageOrderRevenue": 312.61538461538464,
+      "date": "2023-02-18T00:00:00.000Z",
+      "platform": "Allegro"
+    },
+    {
+      "revenue": 10868,
+      "orders": 38,
+      "averageOrderRevenue": 286,
+      "date": "2023-02-18T00:00:00.000Z",
+      "platform": "Farfetch"
+    },
+    {
+      "revenue": 11386,
+      "orders": 48,
+      "averageOrderRevenue": 237.20833333333334,
+      "date": "2023-02-18T00:00:00.000Z",
+      "platform": "Ebay"
+    },
+    {
+      "revenue": 8509,
+      "orders": 33,
+      "averageOrderRevenue": 257.8484848484849,
+      "date": "2023-02-19T00:00:00.000Z",
+      "platform": "Farfetch"
+    },
+    {
+      "revenue": 6540,
+      "orders": 27,
+      "averageOrderRevenue": 242.22222222222223,
+      "date": "2023-02-19T00:00:00.000Z",
+      "platform": "Allegro"
+    },
+    {
+      "revenue": 8391,
+      "orders": 33,
+      "averageOrderRevenue": 254.27272727272728,
+      "date": "2023-02-19T00:00:00.000Z",
+      "platform": "Amazon"
+    },
+    {
+      "revenue": 13773,
+      "orders": 50,
+      "averageOrderRevenue": 275.46,
+      "date": "2023-02-19T00:00:00.000Z",
+      "platform": "Ebay"
+    },
+    {
+      "revenue": 9243,
+      "orders": 26,
+      "averageOrderRevenue": 355.5,
+      "date": "2023-02-20T00:00:00.000Z",
+      "platform": "Amazon"
+    },
+    {
+      "revenue": 7560,
+      "orders": 30,
+      "averageOrderRevenue": 252,
+      "date": "2023-02-20T00:00:00.000Z",
+      "platform": "Farfetch"
+    },
+    {
+      "revenue": 9905,
+      "orders": 38,
+      "averageOrderRevenue": 260.6578947368421,
+      "date": "2023-02-20T00:00:00.000Z",
+      "platform": "Ebay"
+    },
+    {
+      "revenue": 7613,
+      "orders": 26,
+      "averageOrderRevenue": 292.8076923076923,
+      "date": "2023-02-20T00:00:00.000Z",
+      "platform": "Allegro"
+    },
+    {
+      "revenue": 6402,
+      "orders": 25,
+      "averageOrderRevenue": 256.08,
+      "date": "2023-02-21T00:00:00.000Z",
+      "platform": "Amazon"
+    },
+    {
+      "revenue": 11114,
+      "orders": 39,
+      "averageOrderRevenue": 284.97435897435895,
+      "date": "2023-02-21T00:00:00.000Z",
+      "platform": "Allegro"
+    },
+    {
+      "revenue": 4292,
+      "orders": 17,
+      "averageOrderRevenue": 252.47058823529412,
+      "date": "2023-02-21T00:00:00.000Z",
+      "platform": "Ebay"
+    },
+    {
+      "revenue": 9039,
+      "orders": 34,
+      "averageOrderRevenue": 265.8529411764706,
+      "date": "2023-02-21T00:00:00.000Z",
+      "platform": "Farfetch"
+    },
+    {
+      "revenue": 10062,
+      "orders": 30,
+      "averageOrderRevenue": 335.4,
+      "date": "2023-02-22T00:00:00.000Z",
+      "platform": "Amazon"
+    },
+    {
+      "revenue": 10174,
+      "orders": 48,
+      "averageOrderRevenue": 211.95833333333334,
+      "date": "2023-02-22T00:00:00.000Z",
+      "platform": "Farfetch"
+    },
+    {
+      "revenue": 7469,
+      "orders": 26,
+      "averageOrderRevenue": 287.2692307692308,
+      "date": "2023-02-22T00:00:00.000Z",
+      "platform": "Ebay"
+    },
+    {
+      "revenue": 8895,
+      "orders": 36,
+      "averageOrderRevenue": 247.08333333333334,
+      "date": "2023-02-22T00:00:00.000Z",
+      "platform": "Allegro"
+    },
+    {
+      "revenue": 9604,
+      "orders": 31,
+      "averageOrderRevenue": 309.80645161290323,
+      "date": "2023-02-23T00:00:00.000Z",
+      "platform": "Amazon"
+    },
+    {
+      "revenue": 14752,
+      "orders": 51,
+      "averageOrderRevenue": 289.2549019607843,
+      "date": "2023-02-23T00:00:00.000Z",
+      "platform": "Ebay"
+    },
+    {
+      "revenue": 17258,
+      "orders": 54,
+      "averageOrderRevenue": 319.5925925925926,
+      "date": "2023-02-23T00:00:00.000Z",
+      "platform": "Allegro"
+    },
+    {
+      "revenue": 3078,
+      "orders": 12,
+      "averageOrderRevenue": 256.5,
+      "date": "2023-02-23T00:00:00.000Z",
+      "platform": "Farfetch"
+    },
+    {
+      "revenue": 12364,
+      "orders": 38,
+      "averageOrderRevenue": 325.36842105263156,
+      "date": "2023-02-24T00:00:00.000Z",
+      "platform": "Allegro"
+    },
+    {
+      "revenue": 14343,
+      "orders": 47,
+      "averageOrderRevenue": 305.17021276595744,
+      "date": "2023-02-24T00:00:00.000Z",
+      "platform": "Ebay"
+    },
+    {
+      "revenue": 6296,
+      "orders": 27,
+      "averageOrderRevenue": 233.1851851851852,
+      "date": "2023-02-24T00:00:00.000Z",
+      "platform": "Farfetch"
+    },
+    {
+      "revenue": 18320,
+      "orders": 61,
+      "averageOrderRevenue": 300.327868852459,
+      "date": "2023-02-24T00:00:00.000Z",
+      "platform": "Amazon"
+    },
+    {
+      "revenue": 7411,
+      "orders": 27,
+      "averageOrderRevenue": 274.48148148148147,
+      "date": "2023-02-25T00:00:00.000Z",
+      "platform": "Farfetch"
+    },
+    {
+      "revenue": 10460,
+      "orders": 35,
+      "averageOrderRevenue": 298.85714285714283,
+      "date": "2023-02-25T00:00:00.000Z",
+      "platform": "Allegro"
+    },
+    {
+      "revenue": 6058,
+      "orders": 23,
+      "averageOrderRevenue": 263.39130434782606,
+      "date": "2023-02-25T00:00:00.000Z",
+      "platform": "Ebay"
+    },
+    {
+      "revenue": 14237,
+      "orders": 54,
+      "averageOrderRevenue": 263.64814814814815,
+      "date": "2023-02-25T00:00:00.000Z",
+      "platform": "Amazon"
+    },
+    {
+      "revenue": 8384,
+      "orders": 41,
+      "averageOrderRevenue": 204.4878048780488,
+      "date": "2023-02-26T00:00:00.000Z",
+      "platform": "Farfetch"
+    },
+    {
+      "revenue": 8551,
+      "orders": 35,
+      "averageOrderRevenue": 244.31428571428572,
+      "date": "2023-02-26T00:00:00.000Z",
+      "platform": "Ebay"
+    },
+    {
+      "revenue": 3049,
+      "orders": 16,
+      "averageOrderRevenue": 190.5625,
+      "date": "2023-02-26T00:00:00.000Z",
+      "platform": "Allegro"
+    },
+    {
+      "revenue": 8689,
+      "orders": 36,
+      "averageOrderRevenue": 241.36111111111111,
+      "date": "2023-02-26T00:00:00.000Z",
+      "platform": "Amazon"
+    },
+    {
+      "revenue": 22053,
+      "orders": 61,
+      "averageOrderRevenue": 361.5245901639344,
+      "date": "2023-02-27T00:00:00.000Z",
+      "platform": "Amazon"
+    },
+    {
+      "revenue": 8689,
+      "orders": 40,
+      "averageOrderRevenue": 217.225,
+      "date": "2023-02-27T00:00:00.000Z",
+      "platform": "Allegro"
+    },
+    {
+      "revenue": 13086,
+      "orders": 59,
+      "averageOrderRevenue": 221.79661016949152,
+      "date": "2023-02-27T00:00:00.000Z",
+      "platform": "Farfetch"
+    },
+    {
+      "revenue": 6822,
+      "orders": 30,
+      "averageOrderRevenue": 227.4,
+      "date": "2023-02-27T00:00:00.000Z",
+      "platform": "Ebay"
+    },
+    {
+      "revenue": 3232,
+      "orders": 17,
+      "averageOrderRevenue": 190.11764705882354,
+      "date": "2023-02-28T00:00:00.000Z",
+      "platform": "Ebay"
+    },
+    {
+      "revenue": 15627,
+      "orders": 45,
+      "averageOrderRevenue": 347.26666666666665,
+      "date": "2023-02-28T00:00:00.000Z",
+      "platform": "Allegro"
+    },
+    {
+      "revenue": 3955,
+      "orders": 20,
+      "averageOrderRevenue": 197.75,
+      "date": "2023-02-28T00:00:00.000Z",
+      "platform": "Farfetch"
+    },
+    {
+      "revenue": 12671,
+      "orders": 39,
+      "averageOrderRevenue": 324.8974358974359,
+      "date": "2023-02-28T00:00:00.000Z",
+      "platform": "Amazon"
+    }
+  ]
+}

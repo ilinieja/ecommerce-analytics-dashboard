@@ -1,6 +1,6 @@
 import React from "react";
 import TotalStatsBar from "./TotalStatsBar";
-import { TestStoreProvider } from "@/testing/utils";
+import { ComponentTestWrapper } from "@/testing/utils";
 
 describe("<TotalStatsBar />", () => {
   beforeEach(() => {
@@ -12,9 +12,9 @@ describe("<TotalStatsBar />", () => {
     }).as("getDayStats");
 
     cy.mount(
-      <TestStoreProvider>
+      <ComponentTestWrapper>
         <TotalStatsBar />
-      </TestStoreProvider>
+      </ComponentTestWrapper>
     );
     cy.wait(["@getTotalStats", "@getDayStats"]);
   });

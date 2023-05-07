@@ -66,7 +66,8 @@ function addXAxis({
   xAxisGroup
     .selectAll("text")
     .attr("color", "#343434")
-    .attr("font-size", "0.875rem");
+    .attr("font-size", "0.875rem")
+    .attr("data-testid", "StackedBarChart_xAxis_label");
 }
 
 function addYAxis({
@@ -97,7 +98,8 @@ function addYAxis({
   yAxisGroup
     .selectAll("text")
     .attr("color", "#343434")
-    .attr("font-size", "0.875rem");
+    .attr("font-size", "0.875rem")
+    .attr("data-testid", "StackedBarChart_yAxis_label");
 }
 
 function addTooltip({
@@ -255,7 +257,8 @@ function addStackSegment({
     .selectAll(isRounded ? "path" : "rect")
     .data((d) => d)
     .enter()
-    .append(isRounded ? "path" : "rect");
+    .append(isRounded ? "path" : "rect")
+    .attr("data-testid", "StackedBarChart_chart_segment");
 
   if (isRounded) {
     segment.attr("d", (d) => {

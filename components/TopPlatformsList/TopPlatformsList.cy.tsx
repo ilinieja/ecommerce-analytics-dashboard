@@ -1,6 +1,6 @@
 import React from "react";
 import TopPlatformsList from "./TopPlatformsList";
-import { TestStoreProvider } from "@/testing/utils";
+import { ComponentTestWrapper } from "@/testing/utils";
 
 describe("<TopPlatformsList />", () => {
   beforeEach(() => {
@@ -12,9 +12,9 @@ describe("<TopPlatformsList />", () => {
     }).as("getTotalStats");
 
     cy.mount(
-      <TestStoreProvider>
+      <ComponentTestWrapper>
         <TopPlatformsList />
-      </TestStoreProvider>
+      </ComponentTestWrapper>
     );
     cy.wait(["@getTotalPlatformStats", "@getTotalStats"]);
   });
