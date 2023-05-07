@@ -81,8 +81,9 @@ export function DonutChart({ data, className, margin = 0 }: DonutChartProps) {
 
         const element = d3.select(this);
         element.attr("transform", `translate(${pos})`);
-        element.attr("font-size", `0.825rem`);
-        element.attr("fill", `#343434`);
+        element.attr("font-size", "0.825rem");
+        element.attr("fill", "#343434");
+        element.attr("data-testid", "DonutChart_label");
 
         if (pos[0] > 0) {
           element.attr("text-anchor", "end");

@@ -16,7 +16,9 @@ export default function ChartLegend({ items, className }: ChartLegendProps) {
             className={styles.colorIndicator}
             style={{ backgroundColor: item.color }}
           />
-          <span className={styles.text}>{item.title}</span>
+          <span className={styles.text} data-testid="ChartLegend_item">
+            {item.title}
+          </span>
         </div>
       ))}
     </div>

@@ -1,0 +1,28 @@
+{
+  "totalStats": [
+    {
+      "revenue": 127822,
+      "orders": 465,
+      "averageOrderRevenue": 271.7405620492482,
+      "geoBucket": "Other"
+    },
+    {
+      "revenue": 132583,
+      "orders": 480,
+      "averageOrderRevenue": 273.2595167674878,
+      "geoBucket": "Asia"
+    },
+    {
+      "revenue": 151427,
+      "orders": 529,
+      "averageOrderRevenue": 283.0420938250752,
+      "geoBucket": "Europe"
+    },
+    {
+      "revenue": 159153,
+      "orders": 572,
+      "averageOrderRevenue": 276.1320836864361,
+      "geoBucket": "Americas"
+    }
+  ]
+}

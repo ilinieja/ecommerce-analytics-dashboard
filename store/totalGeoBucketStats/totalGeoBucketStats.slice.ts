@@ -19,7 +19,7 @@ export const {
   fetch: fetchTotalGeoBucketStats,
 } = createStatsStore<TotalGeoBucketStats, TotalGeoBucketStatsResponse>({
   name: totalGeoBucketStatsSliceName,
-  apiPath: "api/geo-bucket-stats/total",
+  apiPath: "/api/geo-bucket-stats/total",
   getEntities: (response) => response.totalStats,
   selectId: (entity) =>
     getTotalGeoBucketStatsId(
