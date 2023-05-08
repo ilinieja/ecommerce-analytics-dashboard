@@ -141,7 +141,8 @@ function addTooltip({
         `translate(${tooltipMargin.left}, ${tooltipMargin.top})`
       )
       .attr("dominant-baseline", "middle")
-      .text(data.values[d.data._group].title);
+      .text(data.values[d.data._group].title)
+      .attr("data-testid", "StackedBarChart_tooltip_title");
 
     const tooltipTitleHeight =
       tooltipTitle.node()?.getBoundingClientRect().height ?? 0;
@@ -158,7 +159,8 @@ function addTooltip({
               tooltipMargin.top + tooltipTitleHeight + 12 + 24 * index
             })`
           )
-          .attr("class", styles.tooltipItem);
+          .attr("class", styles.tooltipItem)
+          .attr("data-testid", "StackedBarChart_tooltip_item");
 
         const indicatorRadius = 5;
         item

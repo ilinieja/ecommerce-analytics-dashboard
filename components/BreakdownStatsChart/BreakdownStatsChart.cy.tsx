@@ -87,4 +87,21 @@ describe("<BreakdownStatsChart />", () => {
       cy.wrap(el).snapshot();
     });
   });
+
+  it("shows tooltip on chart segment hover", () => {
+    cy.get('[data-testid="StackedBarChart_chart_segment"]')
+      .eq(10)
+      .trigger("mouseenter");
+
+    cy.wait(10);
+
+    cy.get('[data-testid="StackedBarChart_tooltip_title"]').should(
+      "have.text",
+      "25 Feb"
+    );
+    cy.get('[data-testid="StackedBarChart_tooltip_item"]').should(
+      "have.text",
+      ["Farfetch:7.4k", "Allegro:10.5k", "Ebay:6.1k", "Amazon:14.2k"].join("")
+    );
+  });
 });

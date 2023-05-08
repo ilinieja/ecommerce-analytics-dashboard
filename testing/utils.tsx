@@ -3,7 +3,7 @@ import { Provider as StoreProvider } from "react-redux";
 
 import "@/styles/globals.css";
 
-import { AppState, store as appStore } from "../store/store";
+import { AppState, setupStore } from "../store/store";
 
 export interface TestStoreProviderProps {
   store?: AppState;
@@ -11,7 +11,7 @@ export interface TestStoreProviderProps {
 
 export function ComponentTestWrapper({
   children,
-  store = appStore,
+  store = setupStore(),
 }: PropsWithChildren<TestStoreProviderProps>) {
   return (
     <>
