@@ -1,31 +1,7 @@
 import { faker } from "@faker-js/faker";
-import * as dotenv from "dotenv";
-dotenv.config();
+import Order, { Platform, GeoBucket, LeadSource } from "../models/order.model";
 
-import Order, {
-  Platform,
-  GeoBucket,
-  LeadSource,
-} from "../../models/order.model";
-import dbConnection from "../../shared/dbConnection";
-import logger from "../../shared/logger";
-
-async function populateTestData() {
-  const connection = await dbConnection();
-
-  const orders = Array.from({ length: 10000 }, createRandomOrder);
-
-  try {
-    await Order.collection.insertMany(orders);
-    logger.info("Test data populated successfully");
-  } catch (err) {
-    logger.error(err);
-  } finally {
-    connection.disconnect();
-  }
-}
-
-function createRandomOrder() {
+export function createMockOrder() {
   const fiveYearsAgo = new Date();
   fiveYearsAgo.setFullYear(fiveYearsAgo.getFullYear() - 1);
 
@@ -50,14 +26,14 @@ function createRandomOrder() {
     },
     items: Array.from(
       { length: faker.datatype.number({ min: 1, max: 10 }) },
-      createRandomItem
+      createMockItem
     ),
     leadSource: faker.helpers.arrayElement(Object.values(LeadSource)),
     date: faker.date.between(fiveYearsAgo, Date.now()),
   });
 }
 
-function createRandomItem() {
+function createMockItem() {
   return {
     item: {
       name: faker.commerce.productName(),
@@ -66,7 +42,3 @@ function createRandomItem() {
     quantity: faker.datatype.number({ min: 1, max: 10 }),
   };
 }
-
-(async function () {
-  await populateTestData();
-})();

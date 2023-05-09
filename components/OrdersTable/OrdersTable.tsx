@@ -28,7 +28,7 @@ export function OrdersTable({ className }: OrdersTableProps) {
 
   useEffect(() => {
     dispatch(fetchOrders({ startDate, endDate, limit: 5 }));
-  }, [startDate, endDate]);
+  }, [startDate, endDate, dispatch]);
 
   const orders = useSelector(ordersSelectors.selectAll);
 
@@ -70,7 +70,11 @@ export function OrdersTable({ className }: OrdersTableProps) {
               );
 
               return (
-                <tr className={styles.row} data-testid="OrdersTable_row">
+                <tr
+                  className={styles.row}
+                  data-testid="OrdersTable_row"
+                  key={order._id}
+                >
                   <td
                     className={styles.cell}
                     data-testid="OrdersTable_cell_customer"

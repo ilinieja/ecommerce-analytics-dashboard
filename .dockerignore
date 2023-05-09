@@ -1,0 +1,17 @@
+Dockerfile
+docker-compose.yml
+
+**/node_modules
+.mongo-volume
+.test-mongo-volume
+.next
+
+.env*
+.git
+.gitignore
+
+testing
+cypress
+cypress.config.ts
+**.cy.ts
+**.cy.tsx

@@ -18,7 +18,9 @@ export function Thumbnail({
     <div className={classNames(styles.row, className)}>
       <div className={styles.imageContainer}>
         <div className={styles.imagePlaceholder}></div>
-        {imageUrl && <img className={styles.image} src={imageUrl} />}
+        {imageUrl && (
+          <img className={styles.image} src={imageUrl} alt={`${title} image`} />
+        )}
       </div>
       <div className={styles.column}>
         <span className={styles.title}>{title}</span>

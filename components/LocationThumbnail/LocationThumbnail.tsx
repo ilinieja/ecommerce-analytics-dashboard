@@ -21,7 +21,7 @@ export default function LocationThumbnail({
 
   return (
     <span className={classNames(styles.container, className)}>
-      <img className={styles.icon} src={flagUrl} />
+      <img className={styles.icon} src={flagUrl} alt={`${country} flag`} />
       {city}, {country}
     </span>
   );

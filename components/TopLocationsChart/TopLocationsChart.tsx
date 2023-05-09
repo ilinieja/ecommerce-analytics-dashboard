@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useMemo, useEffect } from "react";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -30,12 +30,13 @@ export function TopLocationsChart({ className }: TopLocationsChartProps) {
     dispatch(fetchTotalGeoBucketStats({ startDate, endDate }));
   }, [startDate, endDate, dispatch]);
 
-  const totalGeoBucketStatsSelector = useCallback(
-    totalGeoBucketStatsSelectors.makeSelectTotalGeoBucketStats(
-      startDate,
-      endDate,
-      "revenue"
-    ),
+  const totalGeoBucketStatsSelector = useMemo(
+    () =>
+      totalGeoBucketStatsSelectors.makeSelectTotalGeoBucketStats(
+        startDate,
+        endDate,
+        "revenue"
+      ),
     [startDate, endDate]
   );
   const totalGeoBucketStats = useSelector(totalGeoBucketStatsSelector);

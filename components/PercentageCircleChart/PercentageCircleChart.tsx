@@ -26,10 +26,10 @@ export function PercentageCircleChart({
     height: containerHeight = 0,
   } = useResizeObserver<HTMLDivElement>();
 
-  const part = value / total;
-  const percentage = numeral(part).format("0%");
-
   useEffect(() => {
+    const part = value / total;
+    const percentage = numeral(part).format("0%");
+
     const svgEl = d3.select(svgRef.current);
     svgEl.selectAll("*").remove();
     const chart = svgEl.append("g");
@@ -79,7 +79,7 @@ export function PercentageCircleChart({
         `translate(${containerWidth / 2},${containerHeight / 2})`
       )
       .text(percentage);
-  }, [containerWidth, containerHeight, value, total]);
+  }, [containerWidth, containerHeight, value, total, color]);
 
   return (
     <div ref={containerRef} className={classNames(styles.container, className)}>

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useCallback, useEffect } from "react";
+import { useMemo, useEffect } from "react";
 import classNames from "classnames";
 
 import { fetchTotalStats } from "@/store/totalStats/totalStats.slice";
@@ -24,8 +24,8 @@ export default function TotalStatsBar({ className }: TotatStatsBarProps) {
   // TODO: Add date-bucketing option selection (day, week, month, year) for timelines.
   const { startDate, endDate } = useSelector(filtersSelectors.getDateRange);
 
-  const selectTotalStats = useCallback(
-    totalStatsSelectors.makeSelectTotalStats(startDate, endDate),
+  const selectTotalStats = useMemo(
+    () => totalStatsSelectors.makeSelectTotalStats(startDate, endDate),
     [startDate, endDate]
   );
   const totalStats = useSelector(selectTotalStats);

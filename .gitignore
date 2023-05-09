@@ -38,3 +38,4 @@ next-env.d.ts
 
 # local database volumes
 .mongo-volume
+.test-mongo-volume

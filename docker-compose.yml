@@ -1,9 +1,32 @@
-version: '2'
+version: "3"
 
+# Spins up and connects the app and all needed dependencies.
 services:
   mongo:
+    container_name: mongo
     image: mongo
-    ports:
-      - 27017:27017
+    restart: always
     volumes:
       - ./.mongo-volume:/data/db
+    networks:
+      - app_network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+    restart: always
+    ports:
+      - ${APP_PORT}:3000
+    environment:
+      API_DATABASE_URI: mongodb://mongo:27017/next-dashboard
+      API_LOG_LEVEL: ${API_LOG_LEVEL}
+    depends_on:
+      - mongo
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge

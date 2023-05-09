@@ -1,0 +1,30 @@
+version: "3"
+
+# Spins up and connects the app and all needed dependencies, populates test data and runs tests.
+services:
+  mongo:
+    container_name: test-mongo
+    image: mongo
+    networks:
+      - test_network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    container_name: test-app
+    ports:
+      - 3003:3000
+    environment:
+      API_DATABASE_URI: mongodb://mongo:27017/test-next-dashboard
+      API_LOG_LEVEL: ${API_LOG_LEVEL}
+      JOBS_DATABASE_URI: mongodb://mongo:27017/test-next-dashboard
+      JOBS_DATABASE_COLLECTION: ${JOBS_DATABASE_COLLECTION}
+    depends_on:
+      - mongo
+    networks:
+      - test_network
+
+networks:
+  test_network:
+    driver: bridge

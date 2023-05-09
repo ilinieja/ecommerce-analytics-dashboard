@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "@reduxjs/toolkit";
 import classNames from "classnames";
@@ -32,18 +32,19 @@ export default function TopPlatformsList({ className }: TopPlatformListProps) {
   const { startDate, endDate } = useSelector(filtersSelectors.getDateRange);
   const isLoadingSuccess = useSelector(getIsLoadingSuccess);
 
-  const selectTopPlatformStats = useCallback(
-    totalPlatformStatsSelectors.makeSelectTotalPlatformStats(
-      startDate,
-      endDate,
-      "revenue"
-    ),
+  const selectTopPlatformStats = useMemo(
+    () =>
+      totalPlatformStatsSelectors.makeSelectTotalPlatformStats(
+        startDate,
+        endDate,
+        "revenue"
+      ),
     [startDate, endDate]
   );
   const topPlatformStats = useSelector(selectTopPlatformStats);
 
-  const selectTotalStats = useCallback(
-    totalStatsSelectors.makeSelectTotalStats(startDate, endDate),
+  const selectTotalStats = useMemo(
+    () => totalStatsSelectors.makeSelectTotalStats(startDate, endDate),
     [startDate, endDate]
   );
   const totalStats = useSelector(selectTotalStats);
