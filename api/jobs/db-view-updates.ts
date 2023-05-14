@@ -12,6 +12,8 @@ const JOB_NAMES = {
 };
 
 export default async function scheduleDbViewUpdates(agenda: Agenda) {
+  const jobs = [];
+
   agenda.define(JOB_NAMES.CALCULATE_DAY_STATS, async (job) => {
     const connection = await dbConnection();
 
@@ -19,7 +21,7 @@ export default async function scheduleDbViewUpdates(agenda: Agenda) {
 
     connection.disconnect();
   });
-  await agenda.every("1 day", JOB_NAMES.CALCULATE_DAY_STATS);
+  jobs.push(await agenda.every("1 day", JOB_NAMES.CALCULATE_DAY_STATS));
 
   agenda.define(JOB_NAMES.CALCULATE_DAY_GEO_BUCKET_STATS, async (job) => {
     const connection = await dbConnection();
@@ -28,7 +30,7 @@ export default async function scheduleDbViewUpdates(agenda: Agenda) {
 
     connection.disconnect();
   });
-  await agenda.every("1 day", JOB_NAMES.CALCULATE_DAY_GEO_BUCKET_STATS);
+  jobs.push(await agenda.every("1 day", JOB_NAMES.CALCULATE_DAY_GEO_BUCKET_STATS));
 
   agenda.define(JOB_NAMES.CALCULATE_DAY_PLATFORM_STATS, async (job) => {
     const connection = await dbConnection();
@@ -37,5 +39,7 @@ export default async function scheduleDbViewUpdates(agenda: Agenda) {
 
     connection.disconnect();
   });
-  await agenda.every("1 day", JOB_NAMES.CALCULATE_DAY_PLATFORM_STATS);
+  jobs.push(await agenda.every("1 day", JOB_NAMES.CALCULATE_DAY_PLATFORM_STATS));
+
+  return jobs;
 }

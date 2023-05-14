@@ -22,6 +22,8 @@ services:
     environment:
       API_DATABASE_URI: mongodb://mongo:27017/next-dashboard
       API_LOG_LEVEL: ${API_LOG_LEVEL}
+      JOBS_DATABASE_URI: mongodb://mongo:27017/next-dashboard
+      JOBS_DATABASE_COLLECTION: ${JOBS_DATABASE_COLLECTION}
     depends_on:
       - mongo
     networks:

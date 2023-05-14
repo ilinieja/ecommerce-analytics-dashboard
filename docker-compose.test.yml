@@ -14,7 +14,7 @@ services:
       dockerfile: Dockerfile.test
     container_name: test-app
     ports:
-      - 3003:3000
+      - ${APP_PORT}:3000
     environment:
       API_DATABASE_URI: mongodb://mongo:27017/test-next-dashboard
       API_LOG_LEVEL: ${API_LOG_LEVEL}
@@ -22,6 +22,18 @@ services:
       JOBS_DATABASE_COLLECTION: ${JOBS_DATABASE_COLLECTION}
     depends_on:
       - mongo
+    networks:
+      - test_network
+
+  test-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile.test-runner
+    container_name: test-runner
+    environment:
+      TEST_APP_URI: app:3000/api
+    depends_on:
+      - app
     networks:
       - test_network
 

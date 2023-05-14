@@ -1,6 +1,14 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
+import commandLineArgs from 'command-line-args';
+const optionDefinitions = [
+  { name: 'run-jobs', alias: 'r', type: Boolean },
+]
+const options = commandLineArgs(optionDefinitions)
+
+
+
 import logger from "../shared/logger";
 
 import setupQueue from "./setup-queue";
@@ -9,10 +17,11 @@ import scheduleDbViewUpdates from "./db-view-updates";
 (async function () {
   const queue = await setupQueue();
 
-  scheduleDbViewUpdates(queue);
-
+  const jobs = await scheduleDbViewUpdates(queue);
   logger.info("Jobs worker started");
 
-  // Second call runs the scheduled jobs (they'll run only after intervals otherwise).
-  scheduleDbViewUpdates(queue);
+  if (options['run-jobs']) {
+    logger.info("Running all jobs");
+    await Promise.all(jobs.map(job => job.run()));
+  }
 })();

@@ -15,4 +15,4 @@ EXPOSE 3000
 # The node user is provided in the Node.js Alpine base image
 USER node
 
-CMD [ "npm", "start" ]
+CMD [ "npm", "start:prod" ]
