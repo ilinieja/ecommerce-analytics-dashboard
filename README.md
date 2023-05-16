@@ -1,38 +1,64 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# E-commerce Analytics Dashboard
 
-## Getting Started
+Stores, processes and displays key E-commerce metrics.
 
-First, run the development server:
+## Tech stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### [Next.js](https://nextjs.org/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Main framework for UI and API layers.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### [MongoDB](https://www.mongodb.com/)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Raw orders data storage and analytical views aggregation.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### [Agenda](https://github.com/agenda/agenda)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Jobs scheduler for analytical view updates.
 
-## Learn More
+### [Redux](https://redux-toolkit.js.org/)
 
-To learn more about Next.js, take a look at the following resources:
+UI state management.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### [D3](https://d3js.org/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Charts and dataviz elements.
 
-## Deploy on Vercel
+### [Docker](https://www.docker.com/)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Containerization for the app and dependencies.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Deploy
+The app and its dependencise are containerized and ready to be deployed using `docker-compose.yml`. To deploy it you need to:
+- Create `.env` file in the project root and copy `.env.default` contents into it.
+Each env var has description in the comment, change if needed.
+You may want to change the `APP_PORT` env var since it controls on which port the app will be available.
+
+- Run `docker-compose -f docker-compose.yml up -d` (you'll need Docker installed on your machine).
+
+- Now you can add data - you can either create the script to insert your data (and use [insertOrders helper](./api/mocks/insert-orders.ts) to write to DB), or [populate mock data](#mock-data).
+
+## Development
+
+To start app the app locally in live-reload/debug mode you need to:
+
+- Create `.env` file in the project root and copy `.env.default` contents into it.
+Each env var has description in the comment, change if needed
+(defaults are supposed to work fine though).
+
+- Run `docker-compose -f docker-compose.dev.yml up -d` (you'll need Docker installed on your machine), it'll run the app dependencies and expose them for local use (defaults from `.env.default` are aligned with that).
+
+- Next you'll need to [add some orders](#mock-data).
+
+- Now process the data to get analytical views - run `npm run jobs`, that'll schedule the jobs and start the worker, you can keep that running if you want the views to be updated on schedule.
+
+- Run `npm run start:dev` to start the app locally. UI will be available on port 3000 (default Next.js port).
+
+
+## Testing
+There's test env setup available in `docker-compose.test.yml`. It runs the app with dependencies, populates test data and runs tests against it (in a separate test-runner container). Use `docker-compose -f docker-compose.test.yml up -d` to start the app in test mode.
+
+## Mock data
+There are 2 ways to add mock orders:
+- `npm run populate-mock-orders` - adds random orders.
+- `npm run populate-mock-orders-from-file` - adds fixed orders from `/api/mocks/mock-orders.json`.

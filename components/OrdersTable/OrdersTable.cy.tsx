@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ComponentTestWrapper } from "@/testing/utils";
+import { ComponentTestWrapper } from "@/tests/utils/ComponentTestWrapper";
 
 import { OrdersTable } from "./OrdersTable";
 

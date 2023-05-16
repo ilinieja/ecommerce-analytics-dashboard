@@ -16,7 +16,7 @@ export class GeoBucketStatsService {
   async getDayStats(startDate: Date, endDate: Date, geoBucket?: GeoBucket) {
     const dayStats = await DayGeoBucketStatsModel.aggregate<DayGeoBucketStats>([
       this.getMatchStage(startDate, endDate, geoBucket),
-      { $sort: { date: 1 } },
+      { $sort: { date: 1, geoBucket: 1 } },
       {
         $project: {
           ...getStatsProjection(),
@@ -43,6 +43,7 @@ export class GeoBucketStatsService {
             geoBucket: { $first: "$geoBucket" },
           },
         },
+        { $sort: { geoBucket: 1 } },
         {
           $project: {
             ...getStatsProjection(),

@@ -1,6 +1,6 @@
 import React from "react";
 import BreakdownStatsChart from "./BreakdownStatsChart";
-import { ComponentTestWrapper } from "@/testing/utils";
+import { ComponentTestWrapper } from "@/tests/utils/ComponentTestWrapper";
 
 describe("<BreakdownStatsChart />", () => {
   beforeEach(() => {

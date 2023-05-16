@@ -1,6 +1,6 @@
 import React from "react";
 import TotalStatsBar from "./TotalStatsBar";
-import { ComponentTestWrapper } from "@/testing/utils";
+import { ComponentTestWrapper } from "@/tests/utils/ComponentTestWrapper";
 
 describe("<TotalStatsBar />", () => {
   beforeEach(() => {

@@ -1,6 +1,6 @@
 import React from "react";
 import TopPlatformsList from "./TopPlatformsList";
-import { ComponentTestWrapper } from "@/testing/utils";
+import { ComponentTestWrapper } from "@/tests/utils/ComponentTestWrapper";
 
 describe("<TopPlatformsList />", () => {
   beforeEach(() => {

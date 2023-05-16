@@ -16,7 +16,7 @@ export class PlatformStatsService {
   async getDayStats(startDate: Date, endDate: Date, platform?: Platform) {
     const dayStats = await DayPlatformStatsModel.aggregate<DayPlatformStats>([
       this.getMatchStage(startDate, endDate, platform),
-      { $sort: { date: 1 } },
+      { $sort: { date: 1, platform: 1 } },
       {
         $project: {
           ...getStatsProjection(),
@@ -43,6 +43,7 @@ export class PlatformStatsService {
             platform: { $first: "$platform" },
           },
         },
+        { $sort: { platform: 1 } },
         {
           $project: {
             ...getStatsProjection(),

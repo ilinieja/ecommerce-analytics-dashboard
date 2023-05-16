@@ -1,6 +1,6 @@
 import React from "react";
 import { TopLocationsChart } from "./TopLocationsChart";
-import { ComponentTestWrapper } from "@/testing/utils";
+import { ComponentTestWrapper } from "@/tests/utils/ComponentTestWrapper";
 
 describe("<TopLocationsChart />", () => {
   beforeEach(() => {
