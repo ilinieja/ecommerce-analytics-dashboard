@@ -37,5 +37,4 @@ yarn-error.log*
 next-env.d.ts
 
 # local database volumes
-.mongo-volume
-.test-mongo-volume
+.mongo-volume*

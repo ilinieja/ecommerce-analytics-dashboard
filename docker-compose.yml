@@ -1,5 +1,7 @@
 version: "3"
 
+name: next-dashboard
+
 # Spins up and connects the app and all needed dependencies.
 services:
   mongo:

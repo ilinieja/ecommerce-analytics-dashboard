@@ -8,10 +8,10 @@ import { AppDispatch } from "@/store/store";
 import { totalStatsSelectors } from "@/store/totalStats/totalStats.selectors";
 import { dayStatsSelectors } from "@/store/dayStats/dayStats.selectors";
 import { filtersSelectors } from "@/store/filters/filters.selectors";
-import SvgCircleLoader from "@/icons/SvgDotsLoader";
 
 import TotalStat from "../TotalStat/TotalStat";
 import styles from "./TotalStatsBar.module.scss";
+import LoadingOverlay from "../LoadingOverlay/LoadingOverlay";
 
 export interface TotatStatsBarProps {
   className?: string;
@@ -44,7 +44,7 @@ export default function TotalStatsBar({ className }: TotatStatsBarProps) {
   }, [startDate, endDate, dispatch]);
 
   return (
-    <div className={classNames(className, styles.card)}>
+    <LoadingOverlay className={classNames(className, styles.card)} isLoadingSuccess={isLoadingSuccess}>
       <TotalStat
         name="Revenue"
         totalValue={totalStats?.revenue}
@@ -63,11 +63,6 @@ export default function TotalStatsBar({ className }: TotatStatsBarProps) {
         valuePrefix="$"
         timelineData={averageOrderRevenuesTimeline}
       />
-      {!isLoadingSuccess && (
-        <div className={styles.loadingOverlay}>
-          <SvgCircleLoader className={styles.loadingIndicator} />
-        </div>
-      )}
-    </div>
+    </LoadingOverlay>
   );
 }

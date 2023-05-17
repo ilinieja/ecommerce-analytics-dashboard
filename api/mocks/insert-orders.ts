@@ -5,7 +5,7 @@ import Order from "../models/order.model";
 import dbConnection from "../shared/dbConnection";
 import logger from "../shared/logger";
 
-export async function insertOrders(orders: (typeof Order)[]) {
+export async function insertOrders(orders: any[]) {
   const connection = await dbConnection();
 
   try {

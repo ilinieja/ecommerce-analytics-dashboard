@@ -13,13 +13,12 @@ import LocationThumbnail from "../LocationThumbnail/LocationThumbnail";
 import LeadSourceThumbnail from "../LeadSourceThumbnail/LeadSourceThumbnail";
 
 import styles from "./OrdersTable.module.scss";
-import SvgCircleLoader from "@/icons/SvgDotsLoader";
+import LoadingOverlay from "../LoadingOverlay/LoadingOverlay";
 
 export interface OrdersTableProps {
   className?: string;
 }
 
-// TODO: Add loading state.
 export function OrdersTable({ className }: OrdersTableProps) {
   const dispatch = useDispatch<AppDispatch>();
   const { startDate, endDate } = useSelector(filtersSelectors.getDateRange);
@@ -33,11 +32,14 @@ export function OrdersTable({ className }: OrdersTableProps) {
   const orders = useSelector(ordersSelectors.selectAll);
 
   return (
-    <div className={classNames(styles.container, className)}>
+    <LoadingOverlay
+      className={classNames(styles.container, className)}
+      isLoadingSuccess={isLoadingSuccess}
+    >
       <div className={styles.header}>
         <h2 className={styles.title}>Latest orders</h2>
       </div>
-      <div className={styles.tableContainer}>
+      <div className={styles.tableContainer} data-testid="OrdersTable_table">
         <table className={styles.table}>
           <thead>
             <tr>
@@ -125,11 +127,6 @@ export function OrdersTable({ className }: OrdersTableProps) {
           </tbody>
         </table>
       </div>
-      {!isLoadingSuccess && (
-        <div className={styles.loadingOverlay}>
-          <SvgCircleLoader className={styles.loadingIndicator} />
-        </div>
-      )}
-    </div>
+    </LoadingOverlay>
   );
 }

@@ -28,6 +28,7 @@ export interface StackedBarChartProps {
   data: StackedBarChartData;
   className?: string;
   margin?: Margin;
+  ["data-testid"]?: string;
 }
 
 interface Margin {
@@ -298,6 +299,7 @@ export default function StackedBarChart({
   className,
   data,
   margin = { top: 10, right: 30, bottom: 30, left: 50 },
+  ...props
 }: StackedBarChartProps) {
   const svgRef = useRef(null);
   const {
@@ -394,7 +396,11 @@ export default function StackedBarChart({
   }, [containerHeight, containerWidth, data, margin]);
 
   return (
-    <div className={classNames(styles.container, className)} ref={containerRef}>
+    <div
+      className={classNames(styles.container, className)}
+      ref={containerRef}
+      data-testid={props["data-testid"]}
+    >
       <svg ref={svgRef}></svg>
     </div>
   );

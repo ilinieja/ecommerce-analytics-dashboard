@@ -1,5 +1,7 @@
 version: "3"
 
+name: next-dashboard-test
+
 # Spins up and connects the app and all needed dependencies, populates test data and runs tests.
 services:
   mongo:

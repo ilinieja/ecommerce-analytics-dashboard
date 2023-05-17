@@ -9,10 +9,10 @@ import { fetchTotalPlatformStats } from "@/store/totalPlatformStats/totalPlatfor
 import { fetchTotalStats } from "@/store/totalStats/totalStats.slice";
 import { totalPlatformStatsSelectors } from "@/store/totalPlatformStats/totalPlatformStats.selectors";
 import { totalStatsSelectors } from "@/store/totalStats/totalStats.selectors";
-import SvgCircleLoader from "@/icons/SvgDotsLoader";
 
 import TopPlatformsListItem from "./TopPlatformsListItem";
 import styles from "./TopPlatformsList.module.css";
+import LoadingOverlay from "../LoadingOverlay/LoadingOverlay";
 
 export interface TopPlatformListProps {
   className?: string;
@@ -55,11 +55,14 @@ export default function TopPlatformsList({ className }: TopPlatformListProps) {
   }, [startDate, endDate, dispatch]);
 
   return (
-    <div className={classNames(className, styles.card)}>
+    <LoadingOverlay
+      className={classNames(className, styles.card)}
+      isLoadingSuccess={isLoadingSuccess}
+    >
       <div className={styles.header}>
         <h2 className={styles.title}>Top platforms</h2>
       </div>
-      <div className={styles.list}>
+      <div className={styles.list} data-testid="TopPlatformsList_list">
         {totalStats &&
           topPlatformStats.map((platformStats) => (
             <TopPlatformsListItem
@@ -69,12 +72,6 @@ export default function TopPlatformsList({ className }: TopPlatformListProps) {
             ></TopPlatformsListItem>
           ))}
       </div>
-      {/* TODO: Move loading indicator with logic into separate component (projecting children inside). */}
-      {!isLoadingSuccess && (
-        <div className={styles.loadingOverlay}>
-          <SvgCircleLoader className={styles.loadingIndicator} />
-        </div>
-      )}
-    </div>
+    </LoadingOverlay>
   );
 }

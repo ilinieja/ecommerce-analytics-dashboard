@@ -8,12 +8,12 @@ import { fetchTotalGeoBucketStats } from "@/store/totalGeoBucketStats/totalGeoBu
 import { totalGeoBucketStatsSelectors } from "@/store/totalGeoBucketStats/totalGeoBucketStats.selectors";
 import { getValuesSortedByField } from "@/shared/utils";
 import { getGeoBucketColor, getGeoBucketOrder } from "@/shared/charts";
-import SvgCircleLoader from "@/icons/SvgDotsLoader";
 
 import { DonutChart, DonutChartData } from "../DonutChart/DonutChart";
 import ChartLegend from "../ChartLegend/ChartLegend";
 
 import styles from "./TopLocationsChart.module.css";
+import LoadingOverlay from "../LoadingOverlay/LoadingOverlay";
 
 export interface TopLocationsChartProps {
   className?: string;
@@ -53,19 +53,14 @@ export function TopLocationsChart({ className }: TopLocationsChartProps) {
   }
 
   return (
-    <div className={classNames(className, styles.card)}>
+    <LoadingOverlay className={classNames(className, styles.card)} isLoadingSuccess={isLoadingSuccess}>
       <div className={styles.header}>
         <h2 className={styles.title}>Top locations</h2>
       </div>
-      <div className={styles.content}>
+      <div className={styles.content} data-testid="TopLocationsChart_chart" >
         <DonutChart className={styles.chart} data={chartData} />
         <ChartLegend items={getValuesSortedByField(chartData, "order")} />
       </div>
-      {!isLoadingSuccess && (
-        <div className={styles.loadingOverlay}>
-          <SvgCircleLoader className={styles.loadingIndicator} />
-        </div>
-      )}
-    </div>
+    </LoadingOverlay>
   );
 }

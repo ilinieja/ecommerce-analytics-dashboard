@@ -7,7 +7,6 @@ import { AppDispatch, RootState } from "@/store/store";
 import { dayPlatformStatsSelectors } from "@/store/dayPlatformStats/dayPlatformStats.selectors";
 import { filtersSelectors } from "@/store/filters/filters.selectors";
 import { fetchDayPlatformStats } from "@/store/dayPlatformStats/dayPlatformStats.slice";
-import SvgCircleLoader from "@/icons/SvgDotsLoader";
 import { DayPlatformStats } from "@/api/services/platform-stats.service";
 import {
   ChartDimension,
@@ -34,6 +33,7 @@ import Select from "../Select/Select";
 
 import styles from "./BreakdownStatsChart.module.scss";
 import logger from "@/shared/logger";
+import LoadingOverlay from "../LoadingOverlay/LoadingOverlay";
 
 export interface BreakdownStatsChartProps {
   className?: string;
@@ -195,8 +195,11 @@ export default function BreakdownStatsChart({
   };
 
   return (
-    <div className={classNames(styles.container, className)}>
-      <div className={styles.header}>
+    <LoadingOverlay
+      className={classNames(styles.container, className)}
+      isLoadingSuccess={isLoadingSuccess}
+    >
+      <div className={styles.header} data-testid="BreakdownStatsChart_header">
         <Select
           items={Object.entries(DIMENSION_CONFIGS).map(
             ([value, { title }]) => ({ value, title })
@@ -209,12 +212,11 @@ export default function BreakdownStatsChart({
           items={getValuesSortedByField(stackConfig, "order")}
         />
       </div>
-      <StackedBarChart className={styles.chart} data={chartData} />
-      {!isLoadingSuccess && (
-        <div className={styles.loadingOverlay}>
-          <SvgCircleLoader className={styles.loadingIndicator} />
-        </div>
-      )}
-    </div>
+      <StackedBarChart
+        className={styles.chart}
+        data={chartData}
+        data-testid="BreakdownStatsChart_chart"
+      />
+    </LoadingOverlay>
   );
 }

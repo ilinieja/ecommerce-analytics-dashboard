@@ -1,0 +1,20 @@
+.container {
+    position: relative;
+}
+
+.loadingOverlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(247, 247, 247, 0.5);
+    border-radius: 4px;
+}
+
+.loadingIndicator {
+    height: 50px;
+}

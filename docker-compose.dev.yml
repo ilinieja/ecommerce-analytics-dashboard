@@ -1,11 +1,13 @@
 version: '3'
 
+name: next-dashboard-dev
+
 # Spins up app dependencies and exposes them, for local dev environment.
 services:
   mongo:
-    container_name: mongo
+    container_name: dev-mongo
     image: mongo
     ports:
       - 27017:27017
     volumes:
-      - ./.mongo-volume:/data/db
+      - ./.mongo-volume-dev:/data/db
