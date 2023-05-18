@@ -12,6 +12,8 @@ services:
       - ./.mongo-volume:/data/db
     networks:
       - app_network
+    logging:
+      driver: none
 
   app:
     build:

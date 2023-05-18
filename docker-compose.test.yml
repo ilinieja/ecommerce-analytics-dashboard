@@ -9,6 +9,8 @@ services:
     image: mongo:6.0
     networks:
       - test_network
+    logging:
+      driver: none
 
   app:
     build:
@@ -26,6 +28,8 @@ services:
       - mongo
     networks:
       - test_network
+    logging:
+      driver: none
 
   test-runner:
     build:
