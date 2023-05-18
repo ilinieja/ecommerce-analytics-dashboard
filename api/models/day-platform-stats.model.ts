@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Order, { Platform } from "./order.model";
+import { getStatsRoundStage } from "./shared";
 
 const DAY_PLATFORM_STATS_COLLECTION_NAME = "day_platform_stats";
 
@@ -47,6 +48,7 @@ export async function calculateDayPlatformStats() {
         platform: "$_id.platform",
       },
     },
+    getStatsRoundStage(),
     {
       $merge: {
         into: DAY_PLATFORM_STATS_COLLECTION_NAME,

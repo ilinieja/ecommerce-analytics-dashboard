@@ -6,6 +6,7 @@
     "build": "next build",
     "start": "next start",
     "start:dev": "next dev",
+    "start:dev:deps": "docker compose -f docker-compose.dev.yml up -d --build",
     "start:test": "run-s populate-mock-orders-from-file start:prod",
     "start:prod": "run-p start start:jobs",
     "start:jobs": "ts-node --skip-project api/jobs/worker.ts --run-jobs",

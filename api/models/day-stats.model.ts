@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Order from "./order.model";
+import { getStatsRoundStage } from "./shared";
 
 const DAY_STATS_COLLECTION_NAME = "day_stats";
 
@@ -36,6 +37,7 @@ export async function calculateDayStats() {
         },
       },
     },
+    getStatsRoundStage(),
     { $merge: { into: DAY_STATS_COLLECTION_NAME, whenMatched: "replace" } },
   ]);
 }

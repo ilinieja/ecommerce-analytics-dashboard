@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Order, { GeoBucket } from "./order.model";
+import { getStatsRoundStage } from "./shared";
 
 const DAY_GEO_BUCKET_STATS_COLLECTION_NAME = "day_geo_bucket_stats";
 
@@ -47,6 +48,7 @@ export async function calculateDayGeoBucketStats() {
         geoBucket: "$_id.geoBucket",
       },
     },
+    getStatsRoundStage(),
     {
       $merge: {
         into: DAY_GEO_BUCKET_STATS_COLLECTION_NAME,
