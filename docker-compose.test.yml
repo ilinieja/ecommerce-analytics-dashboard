@@ -6,7 +6,7 @@ name: next-dashboard-test
 services:
   mongo:
     container_name: test-mongo
-    image: mongo
+    image: mongo:6.0
     networks:
       - test_network
 
@@ -33,7 +33,7 @@ services:
       dockerfile: Dockerfile.test-runner
     container_name: test-runner
     environment:
-      TEST_APP_URI: app:3000/api
+      TEST_APP_URI: app:3000
     depends_on:
       - app
     networks:

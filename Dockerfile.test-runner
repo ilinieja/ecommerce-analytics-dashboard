@@ -10,4 +10,4 @@ WORKDIR /usr/app
 COPY --from=deps /usr/app/ /usr/app/
 COPY . .
 
-CMD [ "npm", "run", "test:all" ]
+CMD [ "npm", "run", "test:all:ci" ]
