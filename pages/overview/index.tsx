@@ -1,4 +1,3 @@
-import { useState } from "react";
 import classNames from "classnames";
 import useResizeObserver from "use-resize-observer";
 
@@ -11,11 +10,6 @@ import { OrdersTable } from "@/components/OrdersTable/OrdersTable";
 import styles from "./index.module.scss";
 
 export default function Overview() {
-  const [isContentScrolled, setIsContentScrolled] = useState(false);
-  const handleContentScroll = (event: React.UIEvent<HTMLElement>) => {
-    setIsContentScrolled(event.currentTarget.scrollTop !== 0);
-  };
-
   const { ref, width = 0 } = useResizeObserver<HTMLDivElement>();
   let layoutClass;
   if (width >= 820) {
@@ -27,14 +21,10 @@ export default function Overview() {
 
   return (
     <div ref={ref} className={classNames(styles.container, layoutClass)}>
-      <header
-        className={classNames(styles.pageHeader, {
-          [styles.scrolled]: isContentScrolled,
-        })}
-      >
+      <header className={classNames(styles.pageHeader)}>
         <h1 className={styles.pageTitle}>Overview</h1>
       </header>
-      <section className={styles.pageContent} onScroll={handleContentScroll}>
+      <section className={styles.pageContent}>
         <div className={styles.grid}>
           <div className={styles.main}>
             <TotalStatsBar className={styles.shrinkable} />

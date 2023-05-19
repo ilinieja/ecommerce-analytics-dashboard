@@ -393,6 +393,7 @@ export default function StackedBarChart({
         isRounded: true,
       });
     }
+    console.log('bar');
   }, [containerHeight, containerWidth, data, margin]);
 
   return (

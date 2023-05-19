@@ -1,18 +1,17 @@
 .container {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
 .pageHeader {
   display: flex;
-  padding: 30px;
-  flex: none;
+  padding: 24px;
   z-index: 1;
-}
-
-.scrolled {
-  box-shadow: var(--shadow-1);
+  position: sticky;
+  top: 0;
+  background: var(--color-light-grey-translucent);
+  margin-bottom: 12px;
+  backdrop-filter: saturate(100%) blur(8px);
 }
 
 .pageTitle {
@@ -24,6 +23,8 @@
 .pageContent {
   flex: 1;
   overflow-y: auto;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 .grid {

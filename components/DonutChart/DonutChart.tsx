@@ -59,7 +59,7 @@ export function DonutChart({ data, className, margin = 0 }: DonutChartProps) {
     const dataArc: any = d3
       .arc()
       .innerRadius(radius * 0.6)
-      .outerRadius(radius * 0.85);
+      .outerRadius(radius * 0.8);
     const labelsArc: any = d3.arc().innerRadius(radius).outerRadius(radius);
 
     chart
@@ -83,7 +83,7 @@ export function DonutChart({ data, className, margin = 0 }: DonutChartProps) {
         element.attr("transform", `translate(${pos})`);
         element.attr("font-size", "0.825rem");
         element.attr("fill", "#343434");
-        element.attr("data-testid", "DonutChart_label");
+        element.attr("fill", "#343434");
 
         if (pos[0] > 0) {
           element.attr("text-anchor", "end");
@@ -92,7 +92,15 @@ export function DonutChart({ data, className, margin = 0 }: DonutChartProps) {
         if (pos[1] < 0) {
           element.attr("dominant-baseline", "hanging");
         }
+
+        // Bottom right corner needs to be shifted up and left a bit
+        if (pos[0] > 0 && pos[1] > 0) {
+          element.attr("dy", "-1rem");
+          element.attr("dx", "-1rem");
+        }
       });
+
+      console.log('donut');
   }, [containerHeight, containerWidth, data, margin]);
 
   return (
