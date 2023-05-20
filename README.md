@@ -31,7 +31,7 @@ Charts and dataviz elements.
 Containerization for the app and dependencies.
 
 ## Deploy
-The app and its dependencise are containerized and ready to be deployed using `docker-compose.yml`. To deploy it you need to:
+The app and its dependencies are containerized and ready to be deployed using `docker-compose.yml`. To deploy it you need to:
 - Create `.env` file in the project root and copy `.env.default` contents into it.
 Each env var has description in the comment, change if needed.
 You may want to change the `APP_PORT` env var since it controls on which port the app will be available.
