@@ -2,6 +2,8 @@
 
 Stores, processes and displays key E-commerce metrics.
 
+![Screenshot](docs/screenshots/ecomerce-analytics-dashboard.gif)
+
 ## Tech stack
 
 ### [Next.js](https://nextjs.org/)
