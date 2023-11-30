@@ -1,4 +1,4 @@
-# E-commerce Analytics Dashboard
+# Next.js + MongoDB E-commerce Analytics Dashboard
 
 Stores, processes and displays key E-commerce metrics.
 
